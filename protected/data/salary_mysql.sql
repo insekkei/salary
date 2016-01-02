@@ -152,3 +152,9 @@ CREATE TABLE tbl_salary
 		REFERENCES tbl_user (employer_id) ON DELETE CASCADE ON UPDATE RESTRICT
 	
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `tbl_salary` (`employer_id`, `salary_date`) VALUES
+('w00123456','2015-11-1'),
+('w00123456','2015-12-1'),
+('w00123456','2016-1-1'),
+('w00123456','2015-10-30');
