@@ -29,8 +29,10 @@
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'首页', 'url'=>array('/salary/index')),
-				array('label'=>'查询记录', 'url'=>array('/id/index')),
+				array('label'=>'首页', 'url'=>Yii::app()->homeUrl),
+				array('label'=>'查询记录', 'url'=>array('/id/admin'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'激活打印', 'url'=>array('/salary/admin'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'重置密码', 'url'=>array('/user/admin'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'登录', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'退出 ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),

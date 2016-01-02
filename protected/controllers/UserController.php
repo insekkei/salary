@@ -27,17 +27,17 @@ class UserController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
+			// array('allow',  // allow all users to perform 'index' and 'view' actions
+			// 	'actions'=>array('index','view'),
+			// 	'users'=>array('*'),
+			// ),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('update'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'actions'=>array('admin','unlock'),
+				'users'=>array('admin','demo'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -101,6 +101,18 @@ class UserController extends Controller
 		$this->render('update',array(
 			'model'=>$model,
 		));
+	}
+
+
+	public function actionUnlock($employer_id) 
+	{
+			$model=$this->loadModel($employer_id);
+			$model->password="123456";
+			echo $model->password;
+			$model->locked=0;
+			if($model->save())
+				$this->redirect(array('admin'));
+
 	}
 
 	/**
@@ -170,4 +182,6 @@ class UserController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+	
 }

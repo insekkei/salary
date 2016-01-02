@@ -79,13 +79,7 @@ class Salary extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('employer_id', 'required'),
 			array('print_status', 'numerical', 'integerOnly'=>true),
-			array('total_salary, total_pay, basic_salary, basic_hours, hour_salary, salary_x1, salary_x1_hour, salary_x2, salary_x2_hour, salary_x3, salary_x3_hour, award_quanqin, award_jineng, award_shengchang, award_yeban, award_tegang, award_zhufang, award_nianzi, award_guojie, award_gaowen, award_qita, award_nianzhong, tiaozhengqian, tiaozhenghou, total_debit, debit_nianjia, hours_nianjia, debit_gongsifangjia, hours_gongsifangjia, debit_hunjia, hours_hunjia, debit_chanjia, hours_chanjia, debit_sangjia, hours_sangjia, debit_shijia, hours_shijia, debit_bingjia, hours_bingjia, debit_kuanggong, hours_kuanggong, debit_chidaozaotui, hours_chidaozaotui, debit_qita, personal_tax, personal_insurance, personal_fund, company_tatal_cost, company_insurance, company_fund', 'numerical'),
-			array('employer_id', 'length', 'max'=>128),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('employer_id, salary_date, print_status, total_salary, total_pay, basic_salary, basic_hours, hour_salary, salary_x1, salary_x1_hour, salary_x2, salary_x2_hour, salary_x3, salary_x3_hour, award_quanqin, award_jineng, award_shengchang, award_yeban, award_tegang, award_zhufang, award_nianzi, award_guojie, award_gaowen, award_qita, award_nianzhong, tiaozhengqian, tiaozhenghou, total_debit, debit_nianjia, hours_nianjia, debit_gongsifangjia, hours_gongsifangjia, debit_hunjia, hours_hunjia, debit_chanjia, hours_chanjia, debit_sangjia, hours_sangjia, debit_shijia, hours_shijia, debit_bingjia, hours_bingjia, debit_kuanggong, hours_kuanggong, debit_chidaozaotui, hours_chidaozaotui, debit_qita, personal_tax, personal_insurance, personal_fund, company_tatal_cost, company_insurance, company_fund', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -107,59 +101,59 @@ class Salary extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'employer_id' => 'Employer',
-			'salary_date' => 'Salary Date',
-			'print_status' => 'Print Status',
-			'total_salary' => 'Total Salary',
-			'total_pay' => 'Total Pay',
-			'basic_salary' => 'Basic Salary',
-			'basic_hours' => 'Basic Hours',
-			'hour_salary' => 'Hour Salary',
-			'salary_x1' => 'Salary X1',
-			'salary_x1_hour' => 'Salary X1 Hour',
-			'salary_x2' => 'Salary X2',
-			'salary_x2_hour' => 'Salary X2 Hour',
-			'salary_x3' => 'Salary X3',
-			'salary_x3_hour' => 'Salary X3 Hour',
-			'award_quanqin' => 'Award Quanqin',
-			'award_jineng' => 'Award Jineng',
-			'award_shengchang' => 'Award Shengchang',
-			'award_yeban' => 'Award Yeban',
-			'award_tegang' => 'Award Tegang',
-			'award_zhufang' => 'Award Zhufang',
-			'award_nianzi' => 'Award Nianzi',
-			'award_guojie' => 'Award Guojie',
-			'award_gaowen' => 'Award Gaowen',
-			'award_qita' => 'Award Qita',
-			'award_nianzhong' => 'Award Nianzhong',
-			'tiaozhengqian' => 'Tiaozhengqian',
-			'tiaozhenghou' => 'Tiaozhenghou',
-			'total_debit' => 'Total Debit',
-			'debit_nianjia' => 'Debit Nianjia',
-			'hours_nianjia' => 'Hours Nianjia',
-			'debit_gongsifangjia' => 'Debit Gongsifangjia',
-			'hours_gongsifangjia' => 'Hours Gongsifangjia',
-			'debit_hunjia' => 'Debit Hunjia',
-			'hours_hunjia' => 'Hours Hunjia',
-			'debit_chanjia' => 'Debit Chanjia',
-			'hours_chanjia' => 'Hours Chanjia',
-			'debit_sangjia' => 'Debit Sangjia',
-			'hours_sangjia' => 'Hours Sangjia',
-			'debit_shijia' => 'Debit Shijia',
-			'hours_shijia' => 'Hours Shijia',
-			'debit_bingjia' => 'Debit Bingjia',
-			'hours_bingjia' => 'Hours Bingjia',
-			'debit_kuanggong' => 'Debit Kuanggong',
-			'hours_kuanggong' => 'Hours Kuanggong',
-			'debit_chidaozaotui' => 'Debit Chidaozaotui',
-			'hours_chidaozaotui' => 'Hours Chidaozaotui',
-			'debit_qita' => 'Debit Qita',
-			'personal_tax' => 'Personal Tax',
-			'personal_insurance' => 'Personal Insurance',
-			'personal_fund' => 'Personal Fund',
-			'company_tatal_cost' => 'Company Tatal Cost',
-			'company_insurance' => 'Company Insurance',
-			'company_fund' => 'Company Fund',
+			'employer_id' => '工号',
+			'salary_date' => '发薪日期',
+			'print_status' => '是否打印',
+			'total_salary' => '总收入',
+			'total_pay' => '实发工资',
+			'basic_salary' => '基本工资',
+			'basic_hours' => '工作小时数',
+			'hour_salary' => '小时工资',
+			'salary_x1' => '工资1.5倍',
+			'salary_x1_hour' => '加班1.5倍（小时）',
+			'salary_x2' => '工资2倍',
+			'salary_x2_hour' => '加班2倍（小时）',
+			'salary_x3' => '工资3倍',
+			'salary_x3_hour' => '加班3倍（小时）',
+			'award_quanqin' => '全勤奖',
+			'award_jineng' => '技能津贴',
+			'award_shengchang' => '生产奖励',
+			'award_yeban' => '夜班津贴',
+			'award_tegang' => '特岗补贴',
+			'award_zhufang' => '住房补贴',
+			'award_nianzi' => '年资奖金',
+			'award_guojie' => '过节费',
+			'award_gaowen' => '高温补贴',
+			'award_qita' => '其他收入',
+			'award_nianzhong' => '年终奖金',
+			'tiaozhengqian' => '其他调整项-税前',
+			'tiaozhenghou' => '其他调整项-税后',
+			'total_debit' => '总扣款',
+			'debit_nianjia' => '年假扣款',
+			'hours_nianjia' => '年假小时数',
+			'debit_gongsifangjia' => '公司放假扣款',
+			'hours_gongsifangjia' => '公司放假小时数',
+			'debit_hunjia' => '婚假扣款',
+			'hours_hunjia' => '婚假小时数',
+			'debit_chanjia' => '产假扣款',
+			'hours_chanjia' => '产假小时数',
+			'debit_sangjia' => '丧假扣款',
+			'hours_sangjia' => '丧假小时数',
+			'debit_shijia' => '事假扣款',
+			'hours_shijia' => '事假小时数',
+			'debit_bingjia' => '病假扣款',
+			'hours_bingjia' => '病假小时数',
+			'debit_kuanggong' => '旷工扣款',
+			'hours_kuanggong' => '旷工小时数',
+			'debit_chidaozaotui' => '迟到早退扣款',
+			'hours_chidaozaotui' => '迟到早退小时数',
+			'debit_qita' => '其他扣款',
+			'personal_tax' => '个人所得税',
+			'personal_insurance' => '社保个人',
+			'personal_fund' => '公积金个人',
+			'company_tatal_cost' => '公司总成本',
+			'company_insurance' => '社保公司',
+			'company_fund' => '公积金公司',
 		);
 	}
 
@@ -184,56 +178,56 @@ class Salary extends CActiveRecord
 		$criteria->compare('employer_id',$this->employer_id,true);
 		$criteria->compare('salary_date',$this->salary_date,true);
 		$criteria->compare('print_status',$this->print_status);
-		$criteria->compare('total_salary',$this->total_salary);
-		$criteria->compare('total_pay',$this->total_pay);
-		$criteria->compare('basic_salary',$this->basic_salary);
-		$criteria->compare('basic_hours',$this->basic_hours);
-		$criteria->compare('hour_salary',$this->hour_salary);
-		$criteria->compare('salary_x1',$this->salary_x1);
-		$criteria->compare('salary_x1_hour',$this->salary_x1_hour);
-		$criteria->compare('salary_x2',$this->salary_x2);
-		$criteria->compare('salary_x2_hour',$this->salary_x2_hour);
-		$criteria->compare('salary_x3',$this->salary_x3);
-		$criteria->compare('salary_x3_hour',$this->salary_x3_hour);
-		$criteria->compare('award_quanqin',$this->award_quanqin);
-		$criteria->compare('award_jineng',$this->award_jineng);
-		$criteria->compare('award_shengchang',$this->award_shengchang);
-		$criteria->compare('award_yeban',$this->award_yeban);
-		$criteria->compare('award_tegang',$this->award_tegang);
-		$criteria->compare('award_zhufang',$this->award_zhufang);
-		$criteria->compare('award_nianzi',$this->award_nianzi);
-		$criteria->compare('award_guojie',$this->award_guojie);
-		$criteria->compare('award_gaowen',$this->award_gaowen);
-		$criteria->compare('award_qita',$this->award_qita);
-		$criteria->compare('award_nianzhong',$this->award_nianzhong);
-		$criteria->compare('tiaozhengqian',$this->tiaozhengqian);
-		$criteria->compare('tiaozhenghou',$this->tiaozhenghou);
-		$criteria->compare('total_debit',$this->total_debit);
-		$criteria->compare('debit_nianjia',$this->debit_nianjia);
-		$criteria->compare('hours_nianjia',$this->hours_nianjia);
-		$criteria->compare('debit_gongsifangjia',$this->debit_gongsifangjia);
-		$criteria->compare('hours_gongsifangjia',$this->hours_gongsifangjia);
-		$criteria->compare('debit_hunjia',$this->debit_hunjia);
-		$criteria->compare('hours_hunjia',$this->hours_hunjia);
-		$criteria->compare('debit_chanjia',$this->debit_chanjia);
-		$criteria->compare('hours_chanjia',$this->hours_chanjia);
-		$criteria->compare('debit_sangjia',$this->debit_sangjia);
-		$criteria->compare('hours_sangjia',$this->hours_sangjia);
-		$criteria->compare('debit_shijia',$this->debit_shijia);
-		$criteria->compare('hours_shijia',$this->hours_shijia);
-		$criteria->compare('debit_bingjia',$this->debit_bingjia);
-		$criteria->compare('hours_bingjia',$this->hours_bingjia);
-		$criteria->compare('debit_kuanggong',$this->debit_kuanggong);
-		$criteria->compare('hours_kuanggong',$this->hours_kuanggong);
-		$criteria->compare('debit_chidaozaotui',$this->debit_chidaozaotui);
-		$criteria->compare('hours_chidaozaotui',$this->hours_chidaozaotui);
-		$criteria->compare('debit_qita',$this->debit_qita);
-		$criteria->compare('personal_tax',$this->personal_tax);
-		$criteria->compare('personal_insurance',$this->personal_insurance);
-		$criteria->compare('personal_fund',$this->personal_fund);
-		$criteria->compare('company_tatal_cost',$this->company_tatal_cost);
-		$criteria->compare('company_insurance',$this->company_insurance);
-		$criteria->compare('company_fund',$this->company_fund);
+		// $criteria->compare('total_salary',$this->total_salary);
+		// $criteria->compare('total_pay',$this->total_pay);
+		// $criteria->compare('basic_salary',$this->basic_salary);
+		// $criteria->compare('basic_hours',$this->basic_hours);
+		// $criteria->compare('hour_salary',$this->hour_salary);
+		// $criteria->compare('salary_x1',$this->salary_x1);
+		// $criteria->compare('salary_x1_hour',$this->salary_x1_hour);
+		// $criteria->compare('salary_x2',$this->salary_x2);
+		// $criteria->compare('salary_x2_hour',$this->salary_x2_hour);
+		// $criteria->compare('salary_x3',$this->salary_x3);
+		// $criteria->compare('salary_x3_hour',$this->salary_x3_hour);
+		// $criteria->compare('award_quanqin',$this->award_quanqin);
+		// $criteria->compare('award_jineng',$this->award_jineng);
+		// $criteria->compare('award_shengchang',$this->award_shengchang);
+		// $criteria->compare('award_yeban',$this->award_yeban);
+		// $criteria->compare('award_tegang',$this->award_tegang);
+		// $criteria->compare('award_zhufang',$this->award_zhufang);
+		// $criteria->compare('award_nianzi',$this->award_nianzi);
+		// $criteria->compare('award_guojie',$this->award_guojie);
+		// $criteria->compare('award_gaowen',$this->award_gaowen);
+		// $criteria->compare('award_qita',$this->award_qita);
+		// $criteria->compare('award_nianzhong',$this->award_nianzhong);
+		// $criteria->compare('tiaozhengqian',$this->tiaozhengqian);
+		// $criteria->compare('tiaozhenghou',$this->tiaozhenghou);
+		// $criteria->compare('total_debit',$this->total_debit);
+		// $criteria->compare('debit_nianjia',$this->debit_nianjia);
+		// $criteria->compare('hours_nianjia',$this->hours_nianjia);
+		// $criteria->compare('debit_gongsifangjia',$this->debit_gongsifangjia);
+		// $criteria->compare('hours_gongsifangjia',$this->hours_gongsifangjia);
+		// $criteria->compare('debit_hunjia',$this->debit_hunjia);
+		// $criteria->compare('hours_hunjia',$this->hours_hunjia);
+		// $criteria->compare('debit_chanjia',$this->debit_chanjia);
+		// $criteria->compare('hours_chanjia',$this->hours_chanjia);
+		// $criteria->compare('debit_sangjia',$this->debit_sangjia);
+		// $criteria->compare('hours_sangjia',$this->hours_sangjia);
+		// $criteria->compare('debit_shijia',$this->debit_shijia);
+		// $criteria->compare('hours_shijia',$this->hours_shijia);
+		// $criteria->compare('debit_bingjia',$this->debit_bingjia);
+		// $criteria->compare('hours_bingjia',$this->hours_bingjia);
+		// $criteria->compare('debit_kuanggong',$this->debit_kuanggong);
+		// $criteria->compare('hours_kuanggong',$this->hours_kuanggong);
+		// $criteria->compare('debit_chidaozaotui',$this->debit_chidaozaotui);
+		// $criteria->compare('hours_chidaozaotui',$this->hours_chidaozaotui);
+		// $criteria->compare('debit_qita',$this->debit_qita);
+		// $criteria->compare('personal_tax',$this->personal_tax);
+		// $criteria->compare('personal_insurance',$this->personal_insurance);
+		// $criteria->compare('personal_fund',$this->personal_fund);
+		// $criteria->compare('company_tatal_cost',$this->company_tatal_cost);
+		// $criteria->compare('company_insurance',$this->company_insurance);
+		// $criteria->compare('company_fund',$this->company_fund);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -254,4 +248,5 @@ class Salary extends CActiveRecord
 	public function primaryKey() {
 		return array('employer_id', 'salary_date');
 	}
+
 }

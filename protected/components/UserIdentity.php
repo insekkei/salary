@@ -9,6 +9,18 @@ class UserIdentity extends CUserIdentity
 {
 
 	private $_id;
+	private $employer_id;
+
+	/**
+	 * Constructor.
+	 * @param string $employer_id employer_id
+	 * @param string $password password
+	 */
+	public function __construct($employer_id,$password)
+	{
+		$this->employer_id=$employer_id;
+		$this->password=$password;
+	}
 	/**
 	 * Authenticates a user.
 	 * The example implementation makes sure if the username and password
@@ -19,16 +31,17 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
-        $username=strtolower($this->username);
-        $user=User::model()->find('LOWER(username)=?',array($username));
-        if($user===null)
+        $user=User::model()->find('employer_id=?',array($this->employer_id));
+        if($user===null){
             $this->errorCode=self::ERROR_USERNAME_INVALID;
+            echo "ddfdalkdfjalfd";
+        }
         else if(!$user->validatePassword($this->password))
             $this->errorCode=self::ERROR_PASSWORD_INVALID;
         else
         {
             $this->_id=$user->employer_id;
-            $this->username=$user->username;
+            $this->employer_id=$user->employer_id;
             $this->errorCode=self::ERROR_NONE;
         }
         return $this->errorCode==self::ERROR_NONE;

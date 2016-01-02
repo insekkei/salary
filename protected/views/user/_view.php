@@ -17,10 +17,6 @@
 	<?php echo CHtml::encode($data->username); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('password')); ?>:</b>
-	<?php echo CHtml::encode($data->password); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('position')); ?>:</b>
 	<?php echo CHtml::encode($data->position); ?>
 	<br />
@@ -30,7 +26,12 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('locked')); ?>:</b>
-	<?php echo CHtml::encode($data->locked); ?>
+	<?php 
+		if ($data->locked == 0)
+			echo CHtml::encode('未锁定'); 
+		else
+			echo CHtml::encode('锁定')
+	?>
 	<br />
 
 

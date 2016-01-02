@@ -33,12 +33,12 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('employer_id, ic_num, username, password, position, department', 'required'),
+		//	array('employer_id, ic_num, username, password, position, department', 'required'),
 			array('locked', 'numerical', 'integerOnly'=>true),
-			array('employer_id, ic_num, username, password, position, department', 'length', 'max'=>128),
+		//	array('employer_id, ic_num, username, password, position, department', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('employer_id, ic_num, username, password, position, department, locked', 'safe', 'on'=>'search'),
+			//array('employer_id, ic_num, username, password, position, department, locked', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,13 +60,13 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'employer_id' => 'Employer',
-			'ic_num' => 'Ic Num',
-			'username' => 'Username',
-			'password' => 'Password',
-			'position' => 'Position',
-			'department' => 'Department',
-			'locked' => 'Locked',
+			'employer_id' => '工号',
+			'ic_num' => 'IC卡号',
+			'username' => '用户名',
+			'password' => '密码',
+			'position' => '职位',
+			'department' => '部门',
+			'locked' => '是否锁定',
 		);
 	}
 
@@ -129,5 +129,16 @@ class User extends CActiveRecord
 	public function hashPassword($password)
 	{
 		return CPasswordHelper::hashPassword($password);
+	}
+
+	protected function beforeSave()
+	{
+	    if(parent::beforeSave())
+	    {
+	        $this->password=$this->hashPassword($this->password);
+	        return true;
+	    }
+	    else
+	        return false;
 	}
 }

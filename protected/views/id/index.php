@@ -3,16 +3,16 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Ids',
+	'查询记录',
 );
 
-$this->menu=array(
-	array('label'=>'Create Id', 'url'=>array('create')),
-	array('label'=>'Manage Id', 'url'=>array('admin')),
-);
+// $this->menu=array(
+// 	array('label'=>'Create Id', 'url'=>array('create')),
+// 	array('label'=>'Manage Id', 'url'=>array('admin')),
+// );
 ?>
 
-<h1>Ids</h1>
+<h1>用户查询打印薪资纪录</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

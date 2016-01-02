@@ -50,8 +50,8 @@ class Id extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'date' => 'Date',
+			'id' => '卡号',
+			'date' => '查询日期',
 		);
 	}
 
