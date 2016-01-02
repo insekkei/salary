@@ -20,6 +20,8 @@ class UserIdentity extends CUserIdentity
 	{
 		$this->employer_id=$employer_id;
 		$this->password=$password;
+		if ($this->employer_id == "admin")
+			$this->username = "admin";
 	}
 	/**
 	 * Authenticates a user.
@@ -34,7 +36,6 @@ class UserIdentity extends CUserIdentity
         $user=User::model()->find('employer_id=?',array($this->employer_id));
         if($user===null){
             $this->errorCode=self::ERROR_USERNAME_INVALID;
-            echo "ddfdalkdfjalfd";
         }
         else if(!$user->validatePassword($this->password))
             $this->errorCode=self::ERROR_PASSWORD_INVALID;
