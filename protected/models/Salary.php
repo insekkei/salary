@@ -250,4 +250,8 @@ class Salary extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function primaryKey() {
+		return array('employer_id', 'salary_date');
+	}
 }
