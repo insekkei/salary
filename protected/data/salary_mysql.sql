@@ -32,6 +32,7 @@ INSERT INTO `tbl_serial` (`id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_id` (
+  `unused_id` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
