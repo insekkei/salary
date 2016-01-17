@@ -4,6 +4,7 @@
  * This is the model class for table "{{serial}}".
  *
  * The followings are the available columns in table '{{serial}}':
+ * @property integer $unused_id
  * @property string $id
  */
 class Serial extends CActiveRecord
@@ -28,7 +29,7 @@ class Serial extends CActiveRecord
 			array('id', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id', 'safe', 'on'=>'search'),
+			array('unused_id, id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,6 +50,7 @@ class Serial extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
+			'unused_id' => 'Unused',
 			'id' => 'ID',
 		);
 	}
@@ -71,6 +73,7 @@ class Serial extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->compare('unused_id',$this->unused_id);
 		$criteria->compare('id',$this->id,true);
 
 		return new CActiveDataProvider($this, array(
