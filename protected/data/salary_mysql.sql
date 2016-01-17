@@ -15,7 +15,8 @@ USE `salary`;
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_serial` (
-  `id` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+  `unused_id` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `id` varchar(100) COLLATE utf8_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
