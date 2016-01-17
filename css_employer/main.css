@@ -1,32 +1,42 @@
+html,body {
+	height:100%;
+}
 body
 {
 	margin: 0;
 	padding: 0;
-	color: #555;
-	font: normal 10pt Arial,Helvetica,sans-serif;
-	background: #EFEFEF;
+	color: #fff;
 }
 
 #page
 {
-	margin-top: 5px;
-	margin-bottom: 5px;
-	background: white;
-	border: 1px solid #C9E0ED;
+	margin-top: 0;
+	margin-bottom: 0;
+	background: #D9D9D9;
+	color: #6F6F76;
+	border: 0;
+	height: 100%;
 }
-
+#month-details #page {
+	background: #fff;
+	overflow: hidden;
+}
 #header
 {
 	margin: 0;
 	padding: 0;
-	border-top: 3px solid #C9E0ED;
 }
 
 #content
 {
-    padding: 20px;
+    padding: 40px;
+    height: 90%;
 }
-
+#month-details #content {
+	padding: 20px 40px;
+	height: 100%;
+	position: relative;
+}
 #sidebar
 {
 	padding: 20px 20px 20px 0;
@@ -35,12 +45,14 @@ body
 #footer
 {
 	padding: 10px;
-	margin: 10px 20px;
+	margin: 0;
 	font-size: 0.8em;
 	text-align: center;
-	border-top: 1px solid #C9E0ED;
+	height: 10%;
 }
-
+#month-details #footer {
+	display: none;
+}
 #logo
 {
 	padding: 10px 20px;
@@ -127,12 +139,14 @@ div.form .rememberMe label
 {
 	display: inline;
 }
-
+.items .view {
+	background: #4B8591;
+	color: #fff
+}
 div.view
 {
 	padding: 10px;
 	margin: 10px 0;
-	border: 1px solid #C9E0ED;
 }
 
 div.breadcrumbs
@@ -226,4 +240,107 @@ div.search-form
 .operations li a:hover
 {
 	background: #80CFFF;
+}
+
+
+/**list**/
+.salary-list {
+	position: relative;
+	height: 100%;
+}
+.salarydetails {
+	height: 100%;
+	position: relative;
+}
+.salary-list .list-view, #month-details {
+	float: left;
+}
+.salary-list .list-view {
+	width: 10%;
+	position: relative;
+	margin-top: 20px;
+	z-index: 2;
+}
+.salary-list dl {
+	border-bottom: 1px dashed #4B8591;
+	padding: 10px 10px;
+	margin-bottom: 10px;
+	line-height: 1.8em;
+}
+dl.award {
+	color: tan;
+}
+dl.debit {
+	color: #aaa;
+}
+.salary-list dl dd,.salary-list dl dt {
+	float:left;
+	width: 15%;
+	font-weight: normal;
+}
+.salary-list .view {
+	margin: 10px 0;
+	padding: 10px 14px;
+	border-radius: 20px;
+	transition: all .3s linear;
+	-webkit-transition: all .3s linear;
+	-moz-transition: all .3s linear;
+	-o-transition: all .3s linear;
+	-trans-transition: all .3s linear;
+	-ms-transition: all .3s linear;
+}
+.salary-list .view.current {
+	transform: translateX(20px);
+	-moz-transform: translateX(20px);
+	-o-transform: translateX(20px);
+	-trans-transform: translateX(20px);
+	-webkit-transform: translateX(20px);
+}
+.salary-list .view.print {
+	background: salmon;
+	color: bisque;
+	position: relative;
+}
+.salary-list .view.print:after {
+	content: "New";
+	position: absolute;
+	right: 8px;
+	top:13px;
+	font-size: 10px;
+	color: #fff;
+	font-style: italic;
+}
+.salary-list .view.print a{
+	color: #fff;
+	text-decoration: none;
+}
+.salary-date a,.salary-date span{
+	display: none;
+}
+#month-details {
+	width: 92.5%;
+	background: #fff;
+	position: absolute;
+	left: 7.5%;
+	height: 100%;
+	padding: 20px 40px;
+	overflow: auto;
+	border-left:5px solid #5A99A8;
+}
+.print {
+	position: absolute;
+	right: 0;
+	top: 0;
+	background: #FA8072;
+	padding: 10px 30px;
+	border-radius: 5px;
+	text-decoration: none;
+	color: #fff;
+}
+.print-button0 {
+	
+}
+.print-button1 {
+	pointer-events: none;
+	background: #aaa;
 }
