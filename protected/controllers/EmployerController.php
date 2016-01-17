@@ -28,11 +28,11 @@ class EmployerController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('login'),
+				'actions'=>array('login', 'getSerialID', 'updatePrintStatus'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index', 'salary'),
+				'actions'=>array('index', 'salary', 'getSerialID', 'updatePrintStatus'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -96,6 +96,18 @@ class EmployerController extends Controller
 		$this->render('login',array('model'=>$model));
 	}
 
+	/**
+	 * Get the Serial ID
+	 **/
+	public function actionGetSerialID()
+	{
+		$model = Serial::model()->findByPk(array('unused_id' => 1));
+		header("Content->type: application/json");
+		echo CJSON::encode($model);
+		$model->id = "guodegang";
+		$model->save();
+		Yii::app()->end();
+	}
 
 
 	// Uncomment the following methods and override them if needed

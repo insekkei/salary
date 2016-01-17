@@ -32,7 +32,7 @@ class SalaryController extends Controller
 			// 	'users'=>array('*'),
 			// ),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update'),
+				'actions'=>array('update', 'printed'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'view' and 'delete' actions
@@ -143,6 +143,9 @@ class SalaryController extends Controller
 		));
 	}
 
+	/**
+	* 激活打印
+	**/
 	public function actionPrint($employer_id, $salary_date) {
 
 		if(isset($_GET['employer_id']) && isset($_GET['salary_date'])) {
@@ -152,6 +155,18 @@ class SalaryController extends Controller
 			$salary->print_status = 0;
 			if($salary->save())
 				$this->redirect(array('admin'));
+		}
+	}
+
+	/**
+	 * 打印完，更新数据库的打印状态
+	 **/
+	public function actionPrinted($employer_id, $salary_date) {
+
+		if(isset($_GET['employer_id']) && isset($_GET['salary_date'])) {
+			$salary = Salary::model()->findByPk(array('employer_id'=>$employer_id, 'salary_date'=>$salary_date));
+			$salary->print_status = 1;
+			$salary->save();
 		}
 	}
 
