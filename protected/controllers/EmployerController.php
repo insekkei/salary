@@ -65,7 +65,7 @@ class EmployerController extends Controller
 	{
 		$model = Salary::model()->findByPk(array('employer_id'=>$employer_id, 'salary_date'=>$salary_date));
 		
-		$this->render('salary', array(
+		$this->renderPartial('salary', array(
 				'model'=>$model,
 			));
 	}
