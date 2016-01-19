@@ -39,10 +39,10 @@ Yii::app()->clientScript->registerScript('querySalary', "
     var firstUrl = $('.salary-list .view:first-child a').attr('href');
 	$('#month-details').load(firstUrl, function() {
 		var date = $('.salary-list .view:first-child time').html();
+		print();
 		$('#month-print').html(date);
 	});
 	
-
 	// 加载选中月份工资单
 	$('.salary-list .view').bind('click', function(){
 		var thisObj = $(this);
@@ -51,9 +51,20 @@ Yii::app()->clientScript->registerScript('querySalary', "
 		thisObj.addClass('current').siblings().removeClass('current');
 		$('#month-details').load(url, function(){
 			$('#month-print').html(date);
+			print();
 		});
 	});
 	
+	// 更改打印状态
+	function print() {
+		$('.print-button0').bind('click', function(e){
+			var url = $(this).attr('href');
+			$.get(url, function(result){
+				window.location.reload();
+			});
+			e.preventDefault();
+		});
+	}
 
 	// 修改月份格式
 	$('.salary-date').each(function(){
@@ -64,5 +75,7 @@ Yii::app()->clientScript->registerScript('querySalary', "
 		date = year + '年' + month + '月';
 		thisObj.children('time').html(date);
 	});");
+
+	
 ?>
 

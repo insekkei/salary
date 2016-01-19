@@ -2,43 +2,34 @@
 <?php
 $url = Yii::app()->createUrl("salary/printed", array("employer_id"=>$model->employer_id,"salary_date"=>$model->salary_date));
 ?>
-<a href="<?php echo $url;?>" class="print print-button<?php echo CHtml::encode($model->print_status);?>">打印</a>
-<?php
+<a href="<?php echo $url;?>" class="btn print-button<?php echo CHtml::encode($model->print_status);?>">打印</a>
+<!-- <span class="btn print-button1">已打印</span> -->
 
-Yii::app()->clientScript->registerScript('print', "
-	// 更改打印地址
-	$('.print-button0').click(function(e){
-		var url = $(this).attr('href');
-		$.get(url, function(){
-			window.location.reload();
-		});
-		e.preventDefault();
-	});
-
-	");
-?>
 <div class="salarydetails">
 	<dl class="clearfix"> 
-		<dt>月份</dt> 
+		<dt><?php echo CHtml::encode($model->getAttributeLabel('employer_id'));?>：</dt> 
+		<dd><?php echo CHtml::encode($model->employer_id);?></dd>
+
+		<dt>月份：</dt>
 	    <dd id="month-print">上月</dd> 
 
-	    <dt><?php echo CHtml::encode($model->getAttributeLabel('total_pay'));?></dt> 
+	    <dt><?php echo CHtml::encode($model->getAttributeLabel('basic_salary'));?>：</dt> 
+	    <dd><?php echo CHtml::encode($model->basic_salary);?></dd> 
+
+	    <dt><?php echo CHtml::encode($model->getAttributeLabel('total_pay'));?>：</dt> 
 	    <dd><?php echo CHtml::encode($model->total_pay);?></dd> 
 
-	    <dt><?php echo CHtml::encode($model->getAttributeLabel('total_salary'));?></dt> 
+	    <dt><?php echo CHtml::encode($model->getAttributeLabel('total_salary'));?>：</dt> 
 	    <dd><?php echo CHtml::encode($model->total_salary);?></dd> 
 	</dl>
 	<dl class="clearfix"> 
-	    <dt><?php echo CHtml::encode($model->getAttributeLabel('basic_salary'));?></dt> 
-	    <dd><?php echo CHtml::encode($model->basic_salary);?></dd> 
-
+	    
 	    <dt><?php echo CHtml::encode($model->getAttributeLabel('basic_hours'));?></dt> 
 	    <dd><?php echo CHtml::encode($model->basic_hours);?></dd> 
 
 	    <dt><?php echo CHtml::encode($model->getAttributeLabel('hour_salary'));?></dt> 
 	    <dd><?php echo CHtml::encode($model->hour_salary);?></dd> 
-	</dl>
-	<dl class="clearfix"> 
+
 	    <dt><?php echo CHtml::encode($model->getAttributeLabel('salary_x1'));?></dt> 
 	    <dd><?php echo CHtml::encode($model->salary_x1);?></dd> 
 
@@ -177,64 +168,5 @@ Yii::app()->clientScript->registerScript('print', "
 	    <dt><?php echo CHtml::encode($model->getAttributeLabel('company_fund'));?></dt> 
 	    <dd><?php echo CHtml::encode($model->company_fund);?></dd> 
 	</dl>
-<?php 
-
-// $this->widget('zii.widgets.CDetailView', array(
-	/*'data'=>$model,
-	'attributes'=>array(*/
-/*		'employer_id',
-		'salary_date',
-		'print_status',
-		'total_salary',
-		'total_pay',*/
-		/*'basic_salary',
-		'basic_hours',
-		'hour_salary',*/
-		/*'salary_x1',
-		'salary_x1_hour',
-		'salary_x2',
-		'salary_x2_hour',
-		'salary_x3',
-		'salary_x3_hour',*/
-		/*'award_quanqin',
-		'award_jineng',
-		'award_shengchang',
-		'award_yeban',
-		'award_tegang',
-		'award_zhufang',
-		'award_nianzi',
-		'award_guojie',
-		'award_gaowen',
-		'award_qita',
-		'award_nianzhong',
-		'tiaozhengqian',
-		'tiaozhenghou',*/
-		/*'total_debit',
-		'debit_nianjia',
-		'hours_nianjia',
-		'debit_gongsifangjia',
-		'hours_gongsifangjia',
-		'debit_hunjia',
-		'hours_hunjia',
-		'debit_chanjia',
-		'hours_chanjia',
-		'debit_sangjia',
-		'hours_sangjia',
-		'debit_shijia',
-		'hours_shijia',
-		'debit_bingjia',
-		'hours_bingjia',
-		'debit_kuanggong',
-		'hours_kuanggong',
-		'debit_chidaozaotui',
-		'hours_chidaozaotui',
-		'debit_qita',
-		'personal_tax',
-		'personal_insurance',
-		'personal_fund',*/
-		/*'company_tatal_cost',
-		'company_insurance',
-		'company_fund',*/
-	// ),
-// )); ?>
 </div>
+
