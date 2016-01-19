@@ -29,8 +29,8 @@ body
 
 #content
 {
-    padding: 40px;
-    height: 90%;
+    padding: 20px 40px 40px;
+    height: 95%;
 }
 #month-details #content {
 	padding: 20px 40px;
@@ -48,7 +48,7 @@ body
 	margin: 0;
 	font-size: 0.8em;
 	text-align: center;
-	height: 10%;
+	height: 5%;
 }
 #month-details #footer {
 	display: none;
@@ -256,16 +256,19 @@ div.search-form
 	float: left;
 }
 .salary-list .list-view {
-	width: 10%;
+	width: 9%;
 	position: relative;
 	margin-top: 20px;
 	z-index: 2;
 }
 .salary-list dl {
-	border-bottom: 1px dashed #4B8591;
+	border-bottom: 1px dashed #666;
 	padding: 10px 10px;
-	margin-bottom: 10px;
-	line-height: 1.8em;
+	margin-bottom: 12px;
+	line-height: 2em;
+}
+.salary-list dl:last-child {
+	border-bottom: 1px solid #666;
 }
 dl.award {
 	color: tan;
@@ -275,30 +278,45 @@ dl.debit {
 }
 .salary-list dl dd,.salary-list dl dt {
 	float:left;
-	width: 15%;
+	width: 14%;
 	font-weight: normal;
+}
+.salary-list dl:first-child {
+	border-bottom: 3px solid #666;
+	font-size: 1.2em;
+	line-height: 2em;
+}
+.salary-list dl:first-child dd, .salary-list dl:first-child dt{
+	width: auto;
+	margin-left: 0;
+	margin-right: 2em;
+	color: #4B8591;
+}
+.salary-list dl:first-child dt {
+	margin-right: 0;
+	color: #999;
 }
 .salary-list .view {
 	margin: 10px 0;
 	padding: 10px 14px;
-	border-radius: 20px;
-	transition: all .3s linear;
-	-webkit-transition: all .3s linear;
-	-moz-transition: all .3s linear;
-	-o-transition: all .3s linear;
-	-trans-transition: all .3s linear;
-	-ms-transition: all .3s linear;
+	width: 100%;
+	position: relative;
+	cursor: pointer;
 }
-.salary-list .view.current {
-	transform: translateX(20px);
-	-moz-transform: translateX(20px);
-	-o-transform: translateX(20px);
-	-trans-transform: translateX(20px);
-	-webkit-transform: translateX(20px);
+.salary-list .view:before {
+	content: "";
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border: 19px solid transparent;
+	border-right-color: #4B8591;
+	position: absolute;
+	left: -38px;
+	top: 0;
 }
 .salary-list .view.print {
-	background: salmon;
-	color: bisque;
+	background: #FA8072;
+	color: #FFE4C4;
 	position: relative;
 }
 .salary-list .view.print:after {
@@ -310,6 +328,15 @@ dl.debit {
 	color: #fff;
 	font-style: italic;
 }
+.salary-list .view.print:before {
+	border-right-color: #FA8072;
+}
+.salary-list .view.current {
+	background: #666;
+}
+.salary-list .view.current:before {
+	border-right-color: #666;
+}
 .salary-list .view.print a{
 	color: #fff;
 	text-decoration: none;
@@ -318,27 +345,28 @@ dl.debit {
 	display: none;
 }
 #month-details {
-	width: 92.5%;
+	width: 91%;
 	background: #fff;
 	position: absolute;
-	left: 7.5%;
+	left: 9%;
 	height: 100%;
 	padding: 20px 40px;
 	overflow: auto;
-	border-left:5px solid #5A99A8;
+	border-left:10px solid #5A99A8;
 }
-.print {
+.btn {
 	position: absolute;
-	right: 0;
-	top: 0;
+	right: 40px;
+	top: 20px;
 	background: #FA8072;
 	padding: 10px 30px;
 	border-radius: 5px;
 	text-decoration: none;
 	color: #fff;
+	z-index: 10;
 }
-.print-button0 {
-	
+.print-button0+.print-button1 {
+	display: none;
 }
 .print-button1 {
 	pointer-events: none;
