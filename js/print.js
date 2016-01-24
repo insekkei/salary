@@ -7,13 +7,12 @@
 	  	LODOP.PREVIEW();
 	};*/
 	function PrintSalary() {	
-		console.log('print');
 		LODOP=getLodop();  
 		LODOP.PRINT_INITA(0,0,"80mm","12cm","打印控件功能演示");
 		LODOP.SET_PRINT_PAGESIZE(3, 800, "10mm", "");
 		AddPrintContent();
-	  	// LODOP.PRINT();	
-	  	LODOP.PREVIEW();
+	  	LODOP.PRINT();	
+	  	// LODOP.PREVIEW();
 	};
 	
 	function AddPrintContent() {
