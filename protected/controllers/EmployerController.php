@@ -32,7 +32,7 @@ class EmployerController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index', 'salary', 'getSerialID', 'updatePrintStatus'),
+				'actions'=>array('logout','index', 'salary', 'getSerialID', 'updatePrintStatus'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -109,6 +109,14 @@ class EmployerController extends Controller
 		Yii::app()->end();
 	}
 
+	/**
+	 * Logs out the current user and redirect to homepage.
+	 */
+	public function actionLogout()
+	{
+		Yii::app()->user->logout();
+		$this->redirect(Yii::app()->createUrl("employer/home",array()));
+	}
 
 	// Uncomment the following methods and override them if needed
 	/*
