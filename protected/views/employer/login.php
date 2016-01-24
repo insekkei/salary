@@ -1,4 +1,3 @@
-
 <div class="form">
 	<h1>ECCO（厦门）薪资打印系统</h1>
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -94,11 +93,15 @@ Yii::app()->clientScript->registerScript('password', "
 					arrayNew.push(array['6'], array['7'], array['4'], array['5'], array['2'], array['3'], array['0'], array['1']);
 					arrayNew = arrayNew.join('');
 					var number = parseInt(arrayNew, 16);
-
-					cardInput.val(number);
-					pwdInput.focus();
-					keyboard.slideDown();
-					window.clearInterval(int);
+					// get 工号by 卡号
+					var url = '/salary/index.php?r=user/getemployerid&ic_num=' + number;
+					$.get(url, function(data){
+						var employerId = data.substring(1, data.length-1);		
+						cardInput.val(employerId);
+						pwdInput.focus();
+						keyboard.slideDown();
+						window.clearInterval(int);
+					})
 				}
 			},
 			error: function(){
