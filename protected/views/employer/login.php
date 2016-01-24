@@ -67,7 +67,6 @@ Yii::app()->clientScript->registerScript('password', "
 				$.each(data, function(i, index){
 					id = data[0];
 				});
-				console.log(id);
 				if (id.length === 10) {
 					var array = id.split('');
 					var arrayNew = new Array();
@@ -80,19 +79,20 @@ Yii::app()->clientScript->registerScript('password', "
 						var employerId = data.substring(1, data.length-1);		
 						cardInput.val(employerId);
 						pwdInput.focus();
+						pwdInput.parent('.row').append(keyboard);
 						keyboard.slideDown();
 						window.clearInterval(int);
 					})
 				}
 			},
 			error: function(){
-				console.log('failed')
 			}
 		});
 	}
 	
 	// password keyboard
 	pwdInput.click(function(){
+		$(this).parent('.row').append(keyboard);
 		$('#keyboard').slideToggle(300);
 	});
 

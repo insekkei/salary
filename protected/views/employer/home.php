@@ -6,8 +6,8 @@
 </div>
 <style type="text/css">
 .homediv {
-	display:inline-block;width: 500px;height:200px;position:absolute;
-	top:50%;left:50%;margin-left: -250px;margin-top: -150px;
+	display:inline-block;width: 550px;height:200px;position:absolute;
+	top:50%;left:50%;margin-left: -275px;margin-top: -150px;
 	text-align: center;
 	color: #fff;
 }

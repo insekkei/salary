@@ -382,24 +382,24 @@ dl.debit {
 	background: #333;
 	background: rgba(0,0,0,.8);
 	left: 0;
-	top: 260px;
+	top: 88px;
 	display: none;
 	z-index:9;
 }
 #keyboard span {
 	background: #fff;
 	display: inline-block;
-	width: 80px;
-	height: 80px;
-	margin: 10px;
+	width: 60px;
+	height: 60px;
+	margin: 8px;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-ms-border-radius: 5px;
 	-trans-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-o-border-radius: 5px;
-	line-height: 80px;
-	font-size: 2em;
+	line-height: 60px;
+	font-size: 1.5em;
 }
 #keyboard .confirm,
 #keyboard .delete,
@@ -407,7 +407,7 @@ dl.debit {
 	color: #fff;
 }
 #keyboard .confirm {
-	width: 170px;
+	width: 140px;
 	background: turquoise;
 }
 #keyboard .delete {
@@ -415,3 +415,23 @@ dl.debit {
 }
 #keyboard .removeAll{background: tomato;}
 
+.user-actions {
+	position:absolute;
+	width: 9%;
+	bottom: 6%;
+	left:inherit;
+}
+.user-actions a {
+	display:inline-block;
+	text-decoration:none;
+	color: #fff;
+	padding: 8px 20px;
+	margin: 10px 0 0;
+	background: #666;
+}
+#changepwd-link {
+	background: tan;
+}
+#successMessage {
+	color:tomato;
+}

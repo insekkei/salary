@@ -12,21 +12,11 @@
  				}
 
  			?>">
-	<!-- <div class="employer-id">
-		<span><?php echo CHtml::encode($data->getAttributeLabel('employer_id')); ?>:</span>
-		<?php echo CHtml::encode($data->employer_id); ?>
-	</div> -->
 
 	<div class="salary-date">
 		<time>日期</time>
 		<span><?php echo CHtml::encode($data->salary_date); ?></span>
-		<!-- <span><?php echo CHtml::encode($data->getAttributeLabel('salary_date')); ?>:</span> -->
 		<?php echo CHtml::link(CHtml::encode($data->salary_date), array('salary', 'employer_id'=>$data->employer_id, 'salary_date'=>$data->salary_date)); ?>
-	</div>
-
-	<div class="print-status">
-<!-- 		<b><?php echo CHtml::encode($data->getAttributeLabel('print_status')); ?>:</b>
- -->		
 	</div>
 </div>
 <?php

@@ -17,6 +17,13 @@
  */
 class User extends CActiveRecord
 {
+
+	public $old_password;
+    public $new_password;
+    public $repeat_password;
+
+    private $_identity;
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -39,8 +46,20 @@ class User extends CActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			//array('employer_id, ic_num, username, password, position, department, locked', 'safe', 'on'=>'search'),
+			array('old_password, new_password, repeat_password', 'required', 'on' => 'changePwd'),
+       		array('old_password', 'findPasswords', 'on' => 'changePwd'),
+        	array('repeat_password', 'compare', 'compareAttribute'=>'new_password', 'on'=>'changePwd'),
+
 		);
 	}
+
+    //matching the old password with your existing password.
+    public function findPasswords($attribute, $params)
+    {
+    	$this->_identity=new UserIdentity($this->employer_id,$this->old_password);
+		if(!$this->_identity->authenticate())
+				$this->addError($attribute, '旧密码错误');
+    }
 
 	/**
 	 * @return array relational rules.
@@ -67,6 +86,9 @@ class User extends CActiveRecord
 			'position' => '职位',
 			'department' => '部门',
 			'locked' => '是否锁定',
+			'old_password' => '旧密码',
+			'new_password' => '新密码',
+			'repeat_password' => '再输入一次新密码',
 		);
 	}
 

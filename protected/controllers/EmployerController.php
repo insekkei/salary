@@ -28,11 +28,11 @@ class EmployerController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('logout', 'home','login', 'getSerialID', 'updatePrintStatus'),
+				'actions'=>array('logout', 'home','login', 'getSerialID', 'updatePrintStatus', 'changepassword'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('logout','index', 'salary', 'getSerialID', 'updatePrintStatus'),
+				'actions'=>array('logout','index', 'salary', 'getSerialID', 'updatePrintStatus', 'changepassword'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -126,6 +126,29 @@ class EmployerController extends Controller
 		$this->redirect(Yii::app()->createUrl("employer/home",array()));
 	}
 
+	public function actionChangepassword($employer_id)
+	 {      
+	    $model = new User;
+	 
+	    $model = User::model()->findByAttributes(array('employer_id'=>$employer_id));
+	    $model->setScenario('changePwd');
+	 
+	 
+	     if(isset($_POST['User'])){
+	        $model->attributes = $_POST['User'];
+	        $valid = $model->validate();
+	 
+	        if($valid){
+	          $model->password = $model->new_password;
+	          if($model->save())
+	           		$this->redirect(array('index','msg'=>'1','employer_id'=>$employer_id)); 
+	          else
+	           		$this->redirect(array('index','msg'=>'0','employer_id'=>$employer_id));
+	          }
+	       }
+	 
+	    $this->render('changepassword',array('model'=>$model)); 
+	 }
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
