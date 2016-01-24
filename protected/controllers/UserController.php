@@ -27,10 +27,10 @@ class UserController extends Controller
 	public function accessRules()
 	{
 		return array(
-			// array('allow',  // allow all users to perform 'index' and 'view' actions
-			// 	'actions'=>array('index','view'),
-			// 	'users'=>array('*'),
-			// ),
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+			 	'actions'=>array('getemployerid'),
+			 	'users'=>array('*'),
+			 ),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('update'),
 				'users'=>array('@'),
@@ -101,6 +101,17 @@ class UserController extends Controller
 		$this->render('update',array(
 			'model'=>$model,
 		));
+	}
+
+
+	// 根据卡号得到员工工号
+	public function actionGetemployerid($ic_num)
+	{
+		$model=User::model()->findByAttributes(array('ic_num'=>$ic_num));
+		header("Content->type: application/json");
+		echo CJSON::encode($model->employer_id);
+		Yii::app()->end();
+
 	}
 
 
