@@ -1,4 +1,8 @@
-<?php /* @var $this Controller */ ?>
+<?php 
+ 	header("Cache-control:no-cache,no-store,must-revalidate");
+    header("Pragma:no-cache");
+	header("Expires:Mon,26 Jul 1997 05:00:00 GMT");
+?>
 <!DOCTYPE html>
 <html>
 <head>
