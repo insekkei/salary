@@ -28,7 +28,7 @@ class EmployerController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('login', 'getSerialID', 'updatePrintStatus'),
+				'actions'=>array('logout', 'home','login', 'getSerialID', 'updatePrintStatus'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -40,6 +40,11 @@ class EmployerController extends Controller
 			),
 		);
 	}
+
+	public function actionHome(){
+		$this->render('home',array());
+	}
+	
 
 	public function actionIndex($employer_id)
 	{
@@ -114,7 +119,10 @@ class EmployerController extends Controller
 	 */
 	public function actionLogout()
 	{
-		Yii::app()->user->logout();
+		if (!Yii::app()->user->isGuest) {
+			Yii::app()->user->logout();
+		}
+
 		$this->redirect(Yii::app()->createUrl("employer/home",array()));
 	}
 

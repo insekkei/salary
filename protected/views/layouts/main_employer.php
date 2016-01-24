@@ -2,6 +2,29 @@
  	header("Cache-control:no-cache,no-store,must-revalidate");
     header("Pragma:no-cache");
 	header("Expires:Mon,26 Jul 1997 05:00:00 GMT");
+
+	Yii::app()->clientScript->registerScript('noaction', "
+		// 页面事件检测，60s无动静则刷新页面 
+		setInterval(check, 60000);
+		function check(){
+			console.log(count);
+			if(count == 0){
+				window.location.href='/salary/index.php?r=employer/logout';
+			}
+			else {
+				count = 0;
+			}
+		}
+		var count = 0;
+		document.body.onmousedown=function(){
+			count++;
+			window.status=count;
+		}
+		document.body.onkeydown=function(){
+			count++;
+			window.status=count;
+		}
+	");
 ?>
 <!DOCTYPE html>
 <html>

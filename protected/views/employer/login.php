@@ -9,7 +9,7 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'employer_id'); ?>
+		<?php echo $form->labelEx($model,'employer_id'); ?>（请刷工卡）
 		<?php echo $form->error($model,'employer_id'); ?>
 		<?php echo $form->textField($model,'employer_id'); ?>
 	</div>
@@ -50,26 +50,7 @@ Yii::app()->clientScript->registerScript('password', "
 	var pwdInput = $('#LoginForm_password');
 	var keyboard = $('#keyboard');
 
-	// 页面事件检测，10s无动静则刷新页面 
-	setInterval(check, 60000);
-	function check(){
-		console.log(count);
-		if(count == 0){
-			window.location.reload(true);
-		}
-		else {
-			count = 0;
-		}
-	}
-	var count = 0;
-	document.body.onmousedown=function(){
-		count++;
-		window.status=count;
-	}
-	document.body.onkeydown=function(){
-		count++;
-		window.status=count;
-	}
+	cardInput.attr('readonly', 'readonly');
 
 	// load id
 	var int=window.setInterval(loadIdData, 300);
