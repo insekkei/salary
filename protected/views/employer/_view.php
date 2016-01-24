@@ -60,6 +60,7 @@ Yii::app()->clientScript->registerScript('querySalary', "
 		$('.print-button0').bind('click', function(e){
 			var url = $(this).attr('href');
 			$.get(url, function(result){
+				PrintSalary();
 				window.location.reload();
 			});
 			e.preventDefault();

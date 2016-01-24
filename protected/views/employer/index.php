@@ -15,3 +15,9 @@
 
 
 </div>
+
+<?php 
+	Yii::app ()->clientScript->registerScriptFile ( Yii::app()->baseUrl.'/js/LodopFuncs.js', CClientScript::POS_HEAD );
+	Yii::app ()->clientScript->registerScriptFile ( Yii::app()->baseUrl.'/js/print.js', CClientScript::POS_HEAD );
+	
+?>
