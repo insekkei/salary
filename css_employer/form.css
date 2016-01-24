@@ -35,7 +35,7 @@
  */
 
 div.form
-{width: 60%;margin: 20px auto;}
+{width: 60%;margin: 0 auto;position: relative;top: 50%;margin-top: -240px;padding: 40px 80px;background: #fff;border-radius:10px;}
 
 div.form input,
 div.form textarea,
@@ -46,12 +46,15 @@ div.form select
 	width: 100%;
 	border: 1px solid inherit;
 	color: #4B8591;
-	font-size: 16px
+	background: #f1f1f1;
+	font-size: 16px;
+	position: relative;
 }
 div.form input[type="submit"] {
 	background: #5A99A8;
 	border-color: #5A99A8 !important;
 	color: #fff;
+	margin-top: 20px;
 }
 div.form fieldset
 {
@@ -62,14 +65,17 @@ div.form fieldset
 
 div.form label
 {
-	font-weight: bold;
-	font-size: 0.9em;
+	font-weight: normal;
+	font-size: 1.2em;
+	margin-bottom: 4px;
+	margin-top: 10px;
 	display: block;
 }
 
 div.form .row
 {
 	margin: 5px 0;
+	position: relative;
 }
 
 div.form .hint
@@ -88,7 +94,9 @@ div.form span.required
 {
 	color: #5A99A8;
 }
-
+div.form label {
+	display:inline-block
+}
 div.form div.error label:first-child,
 div.form label.error,
 div.form span.error
@@ -103,7 +111,7 @@ div.form input.error,
 div.form textarea.error,
 div.form select.error
 {
-	background: #fff;
+	background: #f1f1f1;
 	border-color: #5A99A8;
 }
 
@@ -134,8 +142,12 @@ div.form .errorSummary
 
 div.form .errorMessage
 {
-	color: #845232;
+	color: #fff;
 	font-size: 0.9em;
+	display: inline-block;
+	background: tomato;
+	padding: 0 8px;
+	margin: 0 10px;
 }
 
 div.form .errorSummary p
