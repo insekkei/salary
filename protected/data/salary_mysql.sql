@@ -59,11 +59,11 @@ CREATE TABLE tbl_user
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `tbl_user` (`username`, `password`, `employer_id`, `ic_num`, `position`, `department`, `locked`) VALUES 
-('admin','$2a$10$JTJf6/XqC94rrOtzuF397OHa4mbmZrVTBOQCmYD9U.obZRUut4BoC','admin', '1234512345', '管理员', '总裁办公室', 0),
-('李秘书','$2a$10$JTJf6/XqC94rrOtzuF397OHa4mbmZrVTBOQCmYD9U.obZRUut4BoC','0012345', '1234512345', '管理员', '总裁办公室', 0),
-('王主任','$2a$10$JTJf6/XqC94rrOtzuF397OHa4mbmZrVTBOQCmYD9U.obZRUut4BoC','0012346', '1234512346', '管理员', '销售部', 0),
-('郭德纲','$2a$10$JTJf6/XqC94rrOtzuF397OHa4mbmZrVTBOQCmYD9U.obZRUut4BoC','0012347', '1234512347', '管理员', '市场部', 0),
-('于谦','$2a$10$JTJf6/XqC94rrOtzuF397OHa4mbmZrVTBOQCmYD9U.obZRUut4BoC','0012348', '1234512348', '管理员', '研发部', 0);
+('admin','$2y$13$R2hOrTcomYhaRDaegODQe.yg/tSpfSR5YXbHCcoFlTByhQrojWw1W','admin', '1234512345', '管理员', '总裁办公室', 0),
+('李秘书','$2y$13$R2hOrTcomYhaRDaegODQe.yg/tSpfSR5YXbHCcoFlTByhQrojWw1W','0012345', '1234512345', '管理员', '总裁办公室', 0),
+('王主任','$2y$13$R2hOrTcomYhaRDaegODQe.yg/tSpfSR5YXbHCcoFlTByhQrojWw1W','0012346', '2894130385', '管理员', '销售部', 0),
+('郭德纲','$2y$13$R2hOrTcomYhaRDaegODQe.yg/tSpfSR5YXbHCcoFlTByhQrojWw1W','0012347', '1234512347', '管理员', '市场部', 0),
+('于谦','$2y$13$R2hOrTcomYhaRDaegODQe.yg/tSpfSR5YXbHCcoFlTByhQrojWw1W','0012348', '1234512348', '管理员', '研发部', 0);
 
 CREATE TABLE tbl_salary
 (
