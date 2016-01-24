@@ -1,12 +1,22 @@
 <!-- 打印button -->
 <?php
 $url = Yii::app()->createUrl("salary/printed", array("employer_id"=>$model->employer_id,"salary_date"=>$model->salary_date));
+$employer = $model->employer;
 ?>
 <a href="<?php echo $url;?>" class="btn print-button<?php echo CHtml::encode($model->print_status);?>">打印</a>
 <span class="btn print-button1">已打印</span>
 
 <div class="salarydetails">
 	<dl class="clearfix"> 
+		<dt>姓名：</dt>
+		<dd id="pr_username"><?php echo CHtml::encode($employer->username); ?></dd>
+
+		<dt>部门：</dt>
+		<dd id="pr_department"><?php echo CHtml::encode($employer->department); ?></dd>
+
+		<dt>职位：</dt>
+		<dd id="pr_position"><?php echo CHtml::encode($employer->position); ?></dd>
+
 		<dt><?php echo CHtml::encode($model->getAttributeLabel('employer_id'));?>：</dt> 
 		<dd id="pr_employer_id"><?php echo CHtml::encode($model->employer_id);?></dd>
 
