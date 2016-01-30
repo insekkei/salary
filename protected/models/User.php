@@ -10,6 +10,7 @@
  * @property string $password
  * @property string $position
  * @property string $department
+ * @property string $id_six
  * @property integer $locked
  *
  * The followings are the available model relations:
@@ -42,10 +43,11 @@ class User extends CActiveRecord
 		return array(
 		//	array('employer_id, ic_num, username, password, position, department', 'required'),
 			array('locked', 'numerical', 'integerOnly'=>true),
+			array('id_six', 'length', 'max'=>20),
 		//	array('employer_id, ic_num, username, password, position, department', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			//array('employer_id, ic_num, username, password, position, department, locked', 'safe', 'on'=>'search'),
+			array('employer_id, ic_num, username, password, position, department, locked', 'safe', 'on'=>'search'),
 			array('old_password, new_password, repeat_password', 'required', 'on' => 'changePwd'),
        		array('old_password', 'findPasswords', 'on' => 'changePwd'),
         	array('repeat_password', 'compare', 'compareAttribute'=>'new_password', 'on'=>'changePwd'),
@@ -85,6 +87,7 @@ class User extends CActiveRecord
 			'password' => '密码',
 			'position' => '职位',
 			'department' => '部门',
+			'id_six' => '身份证后六位',
 			'locked' => '是否锁定',
 			'old_password' => '旧密码',
 			'new_password' => '新密码',
@@ -116,6 +119,7 @@ class User extends CActiveRecord
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('position',$this->position,true);
 		$criteria->compare('department',$this->department,true);
+		$criteria->compare('id_six',$this->id_six,true);
 		$criteria->compare('locked',$this->locked);
 
 		return new CActiveDataProvider($this, array(
@@ -141,26 +145,30 @@ class User extends CActiveRecord
 	 */
 	public function validatePassword($password)
 	{
-		return CPasswordHelper::verifyPassword($password,$this->password);
+		if ($password == $this->password)
+			return true;
+		else
+			return false;
+		//return CPasswordHelper::verifyPassword($password,$this->password);
 	}
 	/**
 	 * Generates the password hash.
 	 * @param string password
 	 * @return string hash
 	 */
-	public function hashPassword($password)
-	{
-		return CPasswordHelper::hashPassword($password);
-	}
+	// public function hashPassword($password)
+	// {
+	// 	return CPasswordHelper::hashPassword($password);
+	// }
 
-	protected function beforeSave()
-	{
-	    if(parent::beforeSave())
-	    {
-	        $this->password=$this->hashPassword($this->password);
-	        return true;
-	    }
-	    else
-	        return false;
-	}
+	// protected function beforeSave()
+	// {
+	//     if(parent::beforeSave())
+	//     {
+	//         $this->password=$this->hashPassword($this->password);
+	//         return true;
+	//     }
+	//     else
+	//         return false;
+	// }
 }

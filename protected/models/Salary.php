@@ -79,7 +79,13 @@ class Salary extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('employer_id', 'required'),
 			array('print_status', 'numerical', 'integerOnly'=>true),
+			array('total_salary, total_pay, basic_salary, basic_hours, hour_salary, basic_salary_off, salary_x1, salary_x1_hour, salary_x2, salary_x2_hour, salary_x3, salary_x3_hour, award_quanqin, award_jineng, award_shengchang, award_yeban, award_tegang, award_zhufang, award_nianzi, award_guojie, award_gaowen, award_qita, award_nianzhong, tiaozhengqian, tiaozhenghou, total_debit, debit_queqin, debit_shuihou, debit_shuiqian_tiaozheng, debit_nianjia, hours_nianjia, debit_gongsifangjia, hours_gongsifangjia, debit_hunjia, hours_hunjia, debit_chanjia, hours_chanjia, debit_sangjia, hours_sangjia, debit_shijia, hours_shijia, debit_bingjia, hours_bingjia, debit_kuanggong, hours_kuanggong, hours_buxiu, hours_chuchai, hours_gongshangjia, hours_jiaban_queqin, debit_chidaozaotui, hours_chidaozaotui, debit_qita, personal_tax, personal_insurance, personal_fund, personal_award_tax, company_tatal_cost, company_insurance, company_fund, company_award_tax', 'numerical'),
+			array('employer_id', 'length', 'max'=>128),
+			// The following rule is used by search().
+			// @todo Please remove those attributes that should not be searched.
+			array('employer_id, salary_date, salary_date_start, salary_date_end, print_status, total_salary, total_pay, basic_salary, basic_hours, hour_salary, basic_salary_off, salary_x1, salary_x1_hour, salary_x2, salary_x2_hour, salary_x3, salary_x3_hour, award_quanqin, award_jineng, award_shengchang, award_yeban, award_tegang, award_zhufang, award_nianzi, award_guojie, award_gaowen, award_qita, award_nianzhong, tiaozhengqian, tiaozhenghou, total_debit, debit_queqin, debit_shuihou, debit_shuiqian_tiaozheng, debit_nianjia, hours_nianjia, debit_gongsifangjia, hours_gongsifangjia, debit_hunjia, hours_hunjia, debit_chanjia, hours_chanjia, debit_sangjia, hours_sangjia, debit_shijia, hours_shijia, debit_bingjia, hours_bingjia, debit_kuanggong, hours_kuanggong, hours_buxiu, hours_chuchai, hours_gongshangjia, hours_jiaban_queqin, debit_chidaozaotui, hours_chidaozaotui, debit_qita, personal_tax, personal_insurance, personal_fund, personal_award_tax, company_tatal_cost, company_insurance, company_fund, company_award_tax', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -103,12 +109,15 @@ class Salary extends CActiveRecord
 		return array(
 			'employer_id' => '工号',
 			'salary_date' => '发薪日期',
+			'salary_date_start' => 'Salary Date Start',
+			'salary_date_end' => 'Salary Date End',
 			'print_status' => '是否打印',
 			'total_salary' => '总收入',
 			'total_pay' => '实发工资',
 			'basic_salary' => '基本工资',
 			'basic_hours' => '工作小时数',
 			'hour_salary' => '小时工资',
+			'basic_salary_off' => 'Basic Salary Off',
 			'salary_x1' => '工资1.5倍',
 			'salary_x1_hour' => '加班1.5倍（小时）',
 			'salary_x2' => '工资2倍',
@@ -129,6 +138,9 @@ class Salary extends CActiveRecord
 			'tiaozhengqian' => '其他调整项-税前',
 			'tiaozhenghou' => '其他调整项-税后',
 			'total_debit' => '总扣款',
+			'debit_queqin' => 'Debit Queqin',
+			'debit_shuihou' => 'Debit Shuihou',
+			'debit_shuiqian_tiaozheng' => 'Debit Shuiqian Tiaozheng',
 			'debit_nianjia' => '年假扣款',
 			'hours_nianjia' => '年假小时数',
 			'debit_gongsifangjia' => '公司放假扣款',
@@ -145,15 +157,21 @@ class Salary extends CActiveRecord
 			'hours_bingjia' => '病假小时数',
 			'debit_kuanggong' => '旷工扣款',
 			'hours_kuanggong' => '旷工小时数',
+			'hours_buxiu' => 'Hours Buxiu',
+			'hours_chuchai' => 'Hours Chuchai',
+			'hours_gongshangjia' => 'Hours Gongshangjia',
+			'hours_jiaban_queqin' => 'Hours Jiaban Queqin',
 			'debit_chidaozaotui' => '迟到早退扣款',
 			'hours_chidaozaotui' => '迟到早退小时数',
 			'debit_qita' => '其他扣款',
 			'personal_tax' => '个人所得税',
 			'personal_insurance' => '社保个人',
 			'personal_fund' => '公积金个人',
+			'personal_award_tax' => 'Personal Award Tax',
 			'company_tatal_cost' => '公司总成本',
 			'company_insurance' => '社保公司',
 			'company_fund' => '公积金公司',
+			'company_award_tax' => 'Company Award Tax',
 		);
 	}
 
@@ -178,6 +196,8 @@ class Salary extends CActiveRecord
 		$criteria->compare('employer_id',$this->employer_id,true);
 		$criteria->compare('salary_date',$this->salary_date,true);
 		$criteria->compare('print_status',$this->print_status);
+		$criteria->compare('salary_date_start',$this->salary_date_start,true);
+		$criteria->compare('salary_date_end',$this->salary_date_end,true);
 		// $criteria->compare('total_salary',$this->total_salary);
 		// $criteria->compare('total_pay',$this->total_pay);
 		// $criteria->compare('basic_salary',$this->basic_salary);
