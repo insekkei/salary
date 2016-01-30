@@ -14,8 +14,8 @@ $employer = $model->employer;
 		<dt>部门：</dt>
 		<dd id="pr_department"><?php echo CHtml::encode($employer->department); ?></dd>
 
-		<dt>职位：</dt>
-		<dd id="pr_position"><?php echo CHtml::encode($employer->position); ?></dd>
+		<!--<dt>职位：</dt>
+		<dd id="pr_position"><?php echo CHtml::encode($employer->position); ?></dd>-->
 
 		<dt><?php echo CHtml::encode($model->getAttributeLabel('employer_id'));?>：</dt> 
 		<dd id="pr_employer_id"><?php echo CHtml::encode($model->employer_id);?></dd>
