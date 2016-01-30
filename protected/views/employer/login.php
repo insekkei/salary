@@ -50,7 +50,7 @@ Yii::app()->clientScript->registerScript('password', "
 	var pwdInput = $('#LoginForm_password');
 	var keyboard = $('#keyboard');
 
-	cardInput.attr('readonly', 'readonly');
+	// cardInput.attr('readonly', 'readonly');
 
 	// load id
 	var int=window.setInterval(loadIdData, 300);
@@ -91,25 +91,26 @@ Yii::app()->clientScript->registerScript('password', "
 	}
 	
 	// password keyboard
-	pwdInput.click(function(){
+	$('#LoginForm_employer_id, #LoginForm_password').click(function(){
 		$(this).parent('.row').append(keyboard);
 		$('#keyboard').slideToggle(300);
 	});
 
 	$('#keyboard span').click(function(){
 		var className = $(this).attr('class');
+		var inputPos = $(this).parent('#keyboard').siblings('input');
 		switch (className) {
 			case 'number':
 				var value = $(this).html();
-				pwdInput.val(pwdInput.val() + value);
+				inputPos.val(inputPos.val() + value);
 				break;
 			case 'delete':
-				var str = pwdInput.val();
+				var str = inputPos.val();
 				var newStr = str.substring(0, str.length-1);
-				pwdInput.val(newStr);
+				inputPos.val(newStr);
 				break;
 			case 'removeAll':
-				pwdInput.val('');
+				inputPos.val('');
 				break;
 			case 'confirm':
 				keyboard.slideUp();
