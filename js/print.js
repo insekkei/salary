@@ -6,15 +6,50 @@
 		AddPrintContent("10101010101010","郭德强");
 	  	LODOP.PREVIEW();
 	};*/
-	function PrintSalary() {	
+	var url;
+	var printResult;
+	var t;
+	function PrintSalary(printUrl, param) {	
 		LODOP=getLodop();  
-		LODOP.PRINT_INITA(0,0,"80mm","12cm","打印控件功能演示");
+		url = printUrl;
+		
+		LODOP.PRINT_INITA(0,0,"80mm","12cm", param);
 		LODOP.SET_PRINT_PAGESIZE(3, 800, "10mm", "");
 		AddPrintContent();
-	  	LODOP.PRINT();	
+		LODOP.SET_PRINT_MODE("CATCH_PRINT_STATUS",true);
+	  	printResult = LODOP.PRINT();
+	  	// var success = LODOP.GET_VALUE('PRINT_STATUS_OK', printResult);
+	  	if (printResult == true) {
+	  		updateData();
+	  	}
 	  	// LODOP.PREVIEW();
 	};
 	
+	/*function waitFor () {
+		t = setTimeout("waitFor()",1000);    
+		if (LODOP.GET_VALUE("PRINT_STATUS_OK",printResult)) {
+			clearTimeout(t);
+			updateData();
+			// alert("打印成功！");
+		}if ((!LODOP.GET_VALUE("PRINT_STATUS_EXIST",printResult))) {
+			clearTimeout(t);
+			updateData();
+			// alert("打印任务被删除！");
+		} 
+	}*/
+	
+	function updateData() {
+		// 修改数据库中打印状态
+  		$.get(url, function(result){
+			window.location.reload();
+		});
+
+		// 修改后台打印机任务队列
+		var printerLoc = LODOP.GET_SYSTEM_INFO('NetworkAdapter.1.PhysicalAddress');
+  		$.get('/salary/index.php?r=printer/updateprinter&id=' + printerLoc);
+
+	}
+
 	function AddPrintContent() {
 		var pr_map = {};
 		$('.salarydetails dd').each(function(){
@@ -29,77 +64,121 @@
 		var hour = currentDate.getHours();
 		var minute = currentDate.getMinutes();
 		var second = currentDate.getSeconds();
+		var length = 200;
+		var height = 25;
+		var start = 60;
+		var step = 15;
+		var line = 0;
 
 		LODOP.SET_PRINT_STYLE("FontColor","000");
 		LODOP.SET_PRINT_STYLE("FontSize",12.5);
 		LODOP.ADD_PRINT_LINE(50,"5mm",50,"75mm",2,1);
-		LODOP.ADD_PRINT_LINE(498,"5mm",498,"75mm",2,1);
+		LODOP.ADD_PRINT_LINE(570,"5mm",570,"75mm",2,1);
 //		LODOP.ADD_PRINT_RECT("2.3cm","0.5cm","7cm","11cm",0,1);
-		LODOP.ADD_PRINT_TEXT(10,30,250,25,"ECCO（厦门）有限公司 - 薪资单");
+		LODOP.ADD_PRINT_TEXT(10,30,250,height,"ECCO（厦门）有限公司 - 薪资单");
 		LODOP.SET_PRINT_STYLE("FontSize",11);
-		LODOP.ADD_PRINT_TEXT(33,120,250,25,"薪资月份：" + pr_map['month-print']);
+		LODOP.ADD_PRINT_TEXT(33,120,250,height,"薪资月份：" + pr_map['month-print']);
 		LODOP.SET_PRINT_STYLE("FontName","微软雅黑");
 		LODOP.SET_PRINT_STYLE("FontSize",9);
-		LODOP.ADD_PRINT_TEXT(60,30,200,25,"工号：" + pr_map.pr_employer_id);
-		LODOP.ADD_PRINT_TEXT(60,150,200,25,"部门：" + pr_map.pr_department);
-		LODOP.ADD_PRINT_TEXT(75,30,200,25,"姓名：" + pr_map.pr_username);
-		LODOP.ADD_PRINT_TEXT(75,150,200,25,"职位：" + pr_map.pr_position);
-		LODOP.ADD_PRINT_TEXT(90,30,200,25,"--实发工资：" + pr_map.pr_total_pay);
-		LODOP.ADD_PRINT_TEXT(90,150,200,25,"（总收入-总扣款）");
-		LODOP.ADD_PRINT_TEXT(105,30,200,25,"--总收入：" + pr_map.pr_total_salary);
-		LODOP.ADD_PRINT_TEXT(105,150,200,25,"");
-		LODOP.ADD_PRINT_TEXT(120,30,200,25,"基本工资：" + pr_map.pr_basic_salary);
-		LODOP.ADD_PRINT_TEXT(120,150,200,25,"工作小时数：" + pr_map.pr_basic_hours);
-		LODOP.ADD_PRINT_TEXT(135,30,200,25,"小时工资：" + pr_map.pr_hour_salary);
-		LODOP.ADD_PRINT_TEXT(135,150,200,25,"");
-		LODOP.ADD_PRINT_TEXT(150,30,200,25,"工资1.5倍：" + pr_map.pr_salary_x1);
-		LODOP.ADD_PRINT_TEXT(150,150,200,25,"加班1.5倍（小时）：" + pr_map.pr_salary_x1_hour);
-		LODOP.ADD_PRINT_TEXT(165,30,200,25,"工资2倍：" + pr_map.pr_salary_x2);
-		LODOP.ADD_PRINT_TEXT(165,150,200,25,"加班2倍（小时）：" + pr_map.pr_salary_x2_hour);
-		LODOP.ADD_PRINT_TEXT(180,30,200,25,"工资3倍：" + pr_map.pr_salary_x3);
-		LODOP.ADD_PRINT_TEXT(180,150,200,25,"加班3倍（小时）：" + pr_map.pr_salary_x3_hour);
-		LODOP.ADD_PRINT_TEXT(195,30,200,25,"全勤奖：" + pr_map.pr_award_quanqin);
-		LODOP.ADD_PRINT_TEXT(195,150,200,25,"技能津贴：" + pr_map.pr_award_jineng);
-		LODOP.ADD_PRINT_TEXT(210,30,200,25,"生产奖金：" + pr_map.pr_award_shengchang);
-		LODOP.ADD_PRINT_TEXT(210,150,200,25,"夜班津贴：" + pr_map.pr_award_yeban);
-		LODOP.ADD_PRINT_TEXT(225,30,200,25,"特岗补贴：" + pr_map.pr_award_tegang);
-		LODOP.ADD_PRINT_TEXT(225,150,200,25,"住房补贴：" + pr_map.pr_award_zhufang);
-		LODOP.ADD_PRINT_TEXT(240,30,200,25,"年资奖金：" + pr_map.pr_award_nianzi);
-		LODOP.ADD_PRINT_TEXT(240,150,200,25,"过节费：" + pr_map.pr_award_guojie);
-		LODOP.ADD_PRINT_TEXT(255,30,200,25,"高温补贴：" + pr_map.pr_award_gaowen);
-		LODOP.ADD_PRINT_TEXT(255,150,200,25,"其他收入：" + pr_map.pr_award_qita);
-		LODOP.ADD_PRINT_TEXT(270,30,200,25,"年终奖金：" + pr_map.pr_award_nianzhong);
-		LODOP.ADD_PRINT_TEXT(270,150,200,25,"其他调整项-税前");
-		LODOP.ADD_PRINT_TEXT(285,30,200,25,"--总扣款：" + pr_map.pr_total_debit);
-		LODOP.ADD_PRINT_TEXT(285,150,200,25,"其他调整项-税后");
-		LODOP.ADD_PRINT_TEXT(300,30,200,25,"年假扣款：" + pr_map.pr_debit_nianjia);
-		LODOP.ADD_PRINT_TEXT(300,150,200,25,"年假小时数：" + pr_map.pr_hours_nianjia);
-		LODOP.ADD_PRINT_TEXT(315,30,200,25,"公司放假扣款：" + pr_map.pr_debit_gongsifangjia);
-		LODOP.ADD_PRINT_TEXT(315,150,200,25,"公司放假小时数：" + pr_map.pr_hours_gongsifangjia);
-		LODOP.ADD_PRINT_TEXT(330,30,200,25,"婚假扣款：" + pr_map.pr_debit_hunjia);
-		LODOP.ADD_PRINT_TEXT(330,150,200,25,"婚假小时数：" + pr_map.pr_hours_hunjia);
-		LODOP.ADD_PRINT_TEXT(345,30,200,25,"产假扣款：" + pr_map.pr_debit_chanjia);
-		LODOP.ADD_PRINT_TEXT(345,150,200,25,"产假小时数：" + pr_map.pr_hours_chanjia);
-		LODOP.ADD_PRINT_TEXT(360,30,200,25,"丧假扣款：" + pr_map.pr_debit_sangjia);
-		LODOP.ADD_PRINT_TEXT(360,150,200,25,"丧假小时数：" + pr_map.pr_hours_sangjia);
-		LODOP.ADD_PRINT_TEXT(375,30,200,25,"事假扣款：" + pr_map.pr_debit_shijia);
-		LODOP.ADD_PRINT_TEXT(375,150,200,25,"事假小时数：" + pr_map.pr_hours_shijia);
-		LODOP.ADD_PRINT_TEXT(390,30,200,25,"病假扣款：" + pr_map.pr_debit_bingjia);
-		LODOP.ADD_PRINT_TEXT(390,150,200,25,"病假小时数：" + pr_map.pr_hours_bingjia);
-		LODOP.ADD_PRINT_TEXT(405,30,200,25,"旷工扣款：" + pr_map.pr_debit_kuanggong);
-		LODOP.ADD_PRINT_TEXT(405,150,200,25,"旷工小时数：" + pr_map.pr_hours_kuanggong);
-		LODOP.ADD_PRINT_TEXT(420,30,200,25,"迟到早退扣款：" + pr_map.pr_debit_chidaozaotui);
-		LODOP.ADD_PRINT_TEXT(420,150,200,25,"迟到早退小时数：" + pr_map.pr_hours_chidaozaotui);
-		LODOP.ADD_PRINT_TEXT(435,30,200,25,"其他扣款：" + pr_map.pr_debit_qita);
-		LODOP.ADD_PRINT_TEXT(435,150,200,25,"个人所得税：" + pr_map.pr_personal_tax);
-		LODOP.ADD_PRINT_TEXT(450,30,200,25,"社保个人：" + pr_map.pr_personal_insurance);
-		LODOP.ADD_PRINT_TEXT(450,150,200,25,"公积金个人：" + pr_map.pr_personal_fund);
-		LODOP.ADD_PRINT_TEXT(465,30,200,25,"--公司总成本：" + pr_map.pr_company_tatal_cost);
-		LODOP.ADD_PRINT_TEXT(465,150,200,25,"");
-		LODOP.ADD_PRINT_TEXT(480,30,200,25,"社保公司：" + pr_map.pr_company_insurance);
-		LODOP.ADD_PRINT_TEXT(480,150,200,25,"公积金公司：" + pr_map.pr_company_fund);
-		LODOP.ADD_PRINT_TEXT(505,30,200,25,"日期：" + year + '/' + month + '/' + day);
-		LODOP.ADD_PRINT_TEXT(505,150,200,25,"时间：" + hour + ':' + minute + ':' + second);
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"工号：" + pr_map.pr_employer_id);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"部门：" + pr_map.pr_department);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"姓名：" + pr_map.pr_username);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"--实发工资：" + pr_map.pr_total_pay);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"（总收入-总扣款）");
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"--总收入：" + pr_map.pr_total_salary);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"");
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"基本工资：" + pr_map.pr_basic_salary);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"工作小时数：" + pr_map.pr_basic_hours);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"折算后基本工资：" + pr_map.pr_basic_salary_off);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"小时工资：" + pr_map.pr_hour_salary);
+		line++;
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"工资1.5倍：" + pr_map.pr_salary_x1);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"加班1.5倍（小时）：" + pr_map.pr_salary_x1_hour);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"工资2倍：" + pr_map.pr_salary_x2);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"加班2倍（小时）：" + pr_map.pr_salary_x2_hour);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"工资3倍：" + pr_map.pr_salary_x3);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"加班3倍（小时）：" + pr_map.pr_salary_x3_hour);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"全勤奖：" + pr_map.pr_award_quanqin);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"技能津贴：" + pr_map.pr_award_jineng);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"生产奖金：" + pr_map.pr_award_shengchang);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"夜班津贴：" + pr_map.pr_award_yeban);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"特岗补贴：" + pr_map.pr_award_tegang);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"住房补贴：" + pr_map.pr_award_zhufang);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"忠诚奖：" + pr_map.pr_award_nianzi);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"过节费：" + pr_map.pr_award_guojie);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"高温补贴：" + pr_map.pr_award_gaowen);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"其他补贴：" + pr_map.pr_award_qita);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"年度考核奖：" + pr_map.pr_award_nianzhong);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"税前调整项-补：" + pr_map.pr_tiaozhengqian);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"税后补贴：" + pr_map.pr_tiaozhenghou);
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"");
+		line++;
+
+
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"--总扣款：" + pr_map.pr_total_debit);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"缺勤扣款：" + pr_map.pr_debit_queqin);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"税后扣款：" + pr_map.pr_debit_shuihou);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"奖金税个人：" + pr_map.pr_personal_award_tax);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"税前调整项－扣：" + pr_map.pr_debit_shuiqian_tiaozheng);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"工资个人所得税：" + pr_map.pr_personal_tax);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"社保个人：" + pr_map.pr_personal_insurance);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"公积金个人：" + pr_map.pr_personal_fund);
+		line++;
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"其它（假别单位：小时）：");
+		line++;
+
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"年假小时数：" + pr_map.pr_hours_nianjia);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"病假小时数：" + pr_map.pr_hours_bingjia);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"公司放假小时数：" + pr_map.pr_hours_gongsifangjia);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"旷工小时数：" + pr_map.pr_hours_kuanggong);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"婚假小时数：" + pr_map.pr_hours_hunjia);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"迟到早退小时数：" + pr_map.pr_hours_chidaozaotui);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"产假小时数：" + pr_map.pr_hours_chanjia);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"补休小时数：" + pr_map.pr_hours_buxiu);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"丧假小时数：" + pr_map.pr_hours_sangjia);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"出差小时数：" + pr_map.pr_hours_chuchai);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"事假小时数：" + pr_map.pr_hours_shijia);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"工伤假小时数：" + pr_map.pr_hours_gongshangjia);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"固定加班缺勤小时数：" + pr_map.pr_hours_jiaban_queqin);
+	
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"--公司总成本：" + pr_map.pr_company_tatal_cost);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"");
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"社保公司：" + pr_map.pr_company_insurance);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"公积金公司：" + pr_map.pr_company_fund);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"奖金税公司：" + pr_map.pr_company_award_tax);
+		line++;
+		LODOP.ADD_PRINT_TEXT(start+line*step+10,30,length,height,"日期：" + year + '/' + month + '/' + day);
+		LODOP.ADD_PRINT_TEXT(start+line*step+10,150,length,height,"时间：" + hour + ':' + minute + ':' + second);
+		line++;
 
 //		LODOP.SET_PRINT_STYLEA(2,"FontColor",0);
 //		LODOP.ADD_PRINT_TEXT(41,180,100,20,"2016年1月13日");
@@ -114,7 +193,7 @@
 //		LODOP.SET_PRINT_STYLEA(13,"FontColor",0);
 //		LODOP.ADD_PRINT_TEXT(300,21,74,20,"授权员");
 //		LODOP.SET_PRINT_STYLEA(14,"FontColor",0);
-//		LODOP.ADD_PRINT_TEXT(300,200,74,20,"复核员");
+//		LODOP.ADD_PRINT_TEXT(300,length,74,20,"复核员");
 //		LODOP.SET_PRINT_STYLEA(15,"FontColor",0);
 //		LODOP.ADD_PRINT_TEXT(284,346,74,20,"经办员");
 //		LODOP.SET_PRINT_STYLEA(16,"FontColor",0);

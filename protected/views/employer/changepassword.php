@@ -1,7 +1,5 @@
-<h1>修改密码</h1>
- 
 <div class="form" style="">
- 
+  <h1>修改密码</h1> 
   <?php $form=$this->beginWidget('CActiveForm', array(
       'id'=>'account-form',
       'enableClientValidation'=>true,
@@ -69,14 +67,17 @@ Yii::app()->clientScript->registerScript('password', "
       case 'number':
         var value = $(this).html();
         pwdInput.val(pwdInput.val() + value);
+        pwdInput.focus();
         break;
       case 'delete':
         var str = pwdInput.val();
         var newStr = str.substring(0, str.length-1);
         pwdInput.val(newStr);
+        pwdInput.focus();
         break;
       case 'removeAll':
         pwdInput.val('');
+        pwdInput.focus();
         break;
       case 'confirm':
         keyboard.slideUp();

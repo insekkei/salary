@@ -33,9 +33,10 @@ class Printer extends CActiveRecord
 			array('total_length, length, printed', 'numerical', 'integerOnly'=>true),
 			array('id', 'length', 'max'=>128),
 			array('name', 'length', 'max'=>100),
+			array('emails', 'length', 'max'=>512),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('unused_id, id, name, total_length, length, printed', 'safe', 'on'=>'search'),
+			array('unused_id, id, name, total_length, length, printed, emails', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,12 +57,13 @@ class Printer extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'unused_id' => 'Unused',
-			'id' => 'ID',
-			'name' => 'Name',
-			'total_length' => 'Total Length',
-			'length' => 'Length',
-			'printed' => 'Printed',
+			'unused_id' => '未使用',
+			'id' => '打印机ID',
+			'name' => '打印机名称',
+			'total_length' => '纸盘总长度（cm）',
+			'length' => '单张打印长度（cm）',
+			'printed' => '已打印张数',
+			'emails' => '通知邮箱',
 		);
 	}
 
@@ -89,6 +91,7 @@ class Printer extends CActiveRecord
 		$criteria->compare('total_length',$this->total_length);
 		$criteria->compare('length',$this->length);
 		$criteria->compare('printed',$this->printed);
+		$criteria->compare('emails',$this->emails,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

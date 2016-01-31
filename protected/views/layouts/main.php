@@ -3,7 +3,7 @@
     header("Pragma:no-cache");
 	header("Expires:Mon,26 Jul 1997 05:00:00 GMT");
 ?>
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -36,6 +36,7 @@
 				array('label'=>'首页', 'url'=>Yii::app()->homeUrl),
 				array('label'=>'查询记录', 'url'=>array('/id/admin'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'激活打印', 'url'=>array('/salary/admin'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'打印状态', 'url'=>array('/printer/admin'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'重置密码', 'url'=>array('/user/admin'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'登录', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'退出 ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)

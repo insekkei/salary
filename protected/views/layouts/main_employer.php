@@ -4,29 +4,25 @@
 	header("Expires:Mon,26 Jul 1997 05:00:00 GMT");
 
 	Yii::app()->clientScript->registerScript('noaction', "
-		// 页面事件检测，60s无动静则刷新页面 
-		setInterval(check, 60000);
-		function check(){
-			console.log(count);
-			if(count == 0){
+		// 页面事件检测，30s无动静则刷新页面
+		var num = 30;
+		var count = num;
+		setInterval(check, 1000);
+		function check () {
+			if (count === 0) {
 				window.location.href='/salary/index.php?r=employer/logout';
 			}
-			else {
-				count = 0;
-			}
+			count--;
 		}
-		var count = 0;
 		document.body.onmousedown=function(){
-			count++;
-			window.status=count;
+			count = num;
 		}
 		document.body.onkeydown=function(){
-			count++;
-			window.status=count;
+			count = num;
 		}
 	");
 ?>
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">

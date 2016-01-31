@@ -19,7 +19,7 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
+<!-- 	<div class="row">
 		<?php echo $form->labelEx($model,'id'); ?>
 		<?php echo $form->textField($model,'id',array('size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'id'); ?>
@@ -30,7 +30,7 @@
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
-
+ -->
 	<div class="row">
 		<?php echo $form->labelEx($model,'total_length'); ?>
 		<?php echo $form->textField($model,'total_length'); ?>
@@ -49,8 +49,14 @@
 		<?php echo $form->error($model,'printed'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'emails'); ?>
+		<?php echo $form->textField($model,'emails',array('size'=>60,'maxlength'=>512)); ?>
+		<?php echo $form->error($model,'emails'); ?>
+	</div>
+
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : '提交更新'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

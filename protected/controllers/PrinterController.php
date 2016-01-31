@@ -6,7 +6,7 @@ class PrinterController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @return array action filters
@@ -28,7 +28,7 @@ class PrinterController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'updateprinter'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -54,6 +54,24 @@ class PrinterController extends Controller
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
+	}
+
+	public function actionUpdateprinter($id)
+	{
+		$model=Printer::model()->findByAttributes(array('id'=>$id));
+		if($model===null) {
+			$model = New Printer;
+			$model->id = $id;
+			$model->total_length = 2000;
+			$model->length = 10;
+			$model->name = $id;
+			$model->printed = 1;
+			$model->save();
+		}else {
+			$model->printed = $model->printed + 1;
+			$model->save();
+		}
+
 	}
 
 	/**
@@ -95,7 +113,7 @@ class PrinterController extends Controller
 		{
 			$model->attributes=$_POST['Printer'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->unused_id));
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('update',array(

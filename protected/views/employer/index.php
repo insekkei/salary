@@ -1,8 +1,5 @@
-
-<h1>薪资查询</h1>
-
+<h2>薪资查询</h2>
 <div class="salary-list clearfix">
-
 	<?php $this->widget('zii.widgets.CListView', array(
 		'dataProvider'=>$dataProvider,
 		'itemView'=>'_view',

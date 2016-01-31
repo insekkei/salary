@@ -12,10 +12,39 @@ body
 {
 	margin-top: 0;
 	margin-bottom: 0;
-	background: #AFDBDE;
+	background: #5A99A8;
+	background-size: cover;
 	color: #6F6F76;
 	border: 0;
 	height: 100%;
+}
+.homediv {
+	display:inline-block;
+	width: 900px;
+	/* height:200px; */
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-left: -450px;
+	margin-top: -280px;
+	text-align: center;
+	color: #fff;
+}
+.homediv h2 {
+	line-height: 208px;
+	font-size: 64px;
+	color: #fff;
+}
+#toHome {
+	width: 450px;
+	height: 150px;
+	display: inline-block;
+	background: #fff;
+	color: tomato;
+	line-height: 150px;
+	border-radius: 4px;
+	text-decoration: none;
+	font-size: 52px;
 }
 #month-details #page {
 	background: #fff;
@@ -44,11 +73,12 @@ body
 
 #footer
 {
-	padding: 10px;
+	padding: 0 0 20px;
 	margin: 0;
-	font-size: 0.8em;
+	font-size: 1.8em;
 	text-align: center;
 	height: 5%;
+	color: whitesmoke;
 }
 #month-details #footer {
 	display: none;
@@ -349,10 +379,10 @@ dl.debit {
 	background: #fff;
 	position: absolute;
 	left: 9%;
-	height: 100%;
+	height: 95%;
 	padding: 20px 40px;
 	overflow: auto;
-	border-left:10px solid #5A99A8;
+	border-left: 10px solid #333;
 }
 .btn {
 	position: absolute;
@@ -360,7 +390,7 @@ dl.debit {
 	top: 20px;
 	background: #FA8072;
 	padding: 10px 30px;
-	border-radius: 5px;
+	border-radius: 2px;
 	text-decoration: none;
 	color: #fff;
 	z-index: 10;
@@ -382,7 +412,7 @@ dl.debit {
 	background: #333;
 	background: rgba(0,0,0,.8);
 	left: 0;
-	top: 88px;
+	top: 114px;
 	display: none;
 	z-index:9;
 }
@@ -418,14 +448,14 @@ dl.debit {
 .user-actions {
 	position:absolute;
 	width: 9%;
-	bottom: 6%;
+	bottom: 8%;
 	left:inherit;
 }
 .user-actions a {
 	display:inline-block;
 	text-decoration:none;
 	color: #fff;
-	padding: 8px 20px;
+	padding: 8px 31px;
 	margin: 10px 0 0;
 	background: #666;
 }

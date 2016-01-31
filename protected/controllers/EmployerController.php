@@ -51,7 +51,7 @@ class EmployerController extends Controller
 		
 		$criteria=new CDbCriteria(array(
 			'order'=>'salary_date DESC',
-			'limit'=> 6,
+			'limit'=> 12,
 		));
 		$criteria->compare('employer_id', $employer_id);
 

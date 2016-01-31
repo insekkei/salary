@@ -25,7 +25,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>激活薪资打印</h1>
+<h2>激活薪资打印</h2>
 
 
 <?php echo CHtml::link('高级查找','#',array('class'=>'search-button')); ?>

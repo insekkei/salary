@@ -49,10 +49,13 @@ Yii::app()->clientScript->registerScript('querySalary', "
 	function print() {
 		$('.print-button0').bind('click', function(e){
 			var url = $(this).attr('href');
-			$.get(url, function(result){
-				PrintSalary();
-				window.location.reload();
-			});
+			var employerId = url.split('&')[1].split('=')[1];
+			var salaryDate = url.split('&')[2].split('=')[1];
+			var param = String(employerId) + '_' + String(salaryDate);
+			// $.get(url, function(result){
+				PrintSalary(url, param);
+				// window.location.reload();
+			// });
 			e.preventDefault();
 		});
 	}

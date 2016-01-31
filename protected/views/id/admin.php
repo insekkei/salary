@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>查询打印记录</h1>
+<h2>查询打印记录</h2>
 
 
 <?php echo CHtml::link('高级查找','#',array('class'=>'search-button')); ?>

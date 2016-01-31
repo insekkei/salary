@@ -24,8 +24,10 @@ CREATE TABLE IF NOT EXISTS `tbl_printer` (
   `name` varchar(100) NOT NULL,
   `total_length` INTEGER DEFAULT 0,
   `length` INTEGER NOT NULL DEFAULT 0,
-  `printed` INTEGER NOT NULL DEFAULT 0
+  `printed` INTEGER NOT NULL DEFAULT 0,
+  `emails` VARCHAR(512) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 --
 -- 转存表中的数据  `tbl_printer`

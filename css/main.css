@@ -4,27 +4,29 @@ body
 	padding: 0;
 	color: #555;
 	font: normal 10pt Arial,Helvetica,sans-serif;
-	background: #EFEFEF;
+	background: #5A99A8;
 }
 
 #page
 {
-	margin-top: 5px;
-	margin-bottom: 5px;
+	/* margin-top: 5px; */
+	/* margin-bottom: 5px; */
 	background: white;
-	border: 1px solid #C9E0ED;
+	/* border: 1px solid #C9E0ED; */
+	position: relative;
 }
 
 #header
 {
 	margin: 0;
-	padding: 0;
-	border-top: 3px solid #C9E0ED;
+	padding: 20px 0;
+	/* border-top: 3px solid #C9E0ED; */
 }
 
 #content
 {
     padding: 20px;
+    line-height: 1.7em;
 }
 
 #sidebar
@@ -34,11 +36,12 @@ body
 
 #footer
 {
-	padding: 10px;
-	margin: 10px 20px;
+	padding: 20px 0;
+	margin: 80px 0 0;
 	font-size: 0.8em;
 	text-align: center;
-	border-top: 1px solid #C9E0ED;
+	background: #333;
+	color: #eee;
 }
 
 #logo
@@ -46,38 +49,82 @@ body
 	padding: 10px 20px;
 	font-size: 200%;
 }
-
-#mainmenu
+#mainmenu{
+	position: absolute;
+	right:20px;
+	top:30px;
+	border-radius: 3px;
+}
+#content .grid-view table.items th
 {
-	background:white url(bg.gif) repeat-x left top;
+	background:#DB7093;
+}
+#content .grid-view {
+	padding: 0;
+}
+.search-button {
+	display: inline-block;
+	padding: 4px 16px;
+	background: slategrey;
+	color: #fff;
+	border-radius: 4px;
+}
+.search-button:hover {
+	color: #eee;
+}
+.filters td {
+	padding: 3px 0 !important; 
+}
+.filters td input {
+	
+}
+#content .grid-view table.items th, #content .grid-view table.items td {
+	font-size: 1em;
+	border: 1px white solid;
+	padding: .5em .4em;
+	font-weight: normal;
+}
+#content .grid-view .filters input, #content .grid-view .filters select {
+	padding: 8px 10px;
+    box-sizing: border-box;
 }
 
+#content .grid-view .summary {
+	color: #DB7093;
+    font-style: italic;
+}
 #mainmenu ul
 {
-	padding:6px 20px 5px 20px;
+	padding: 0 10px;
 	margin:0px;
 }
 
 #mainmenu ul li
 {
-	display: inline;
+	display: inline-block;
+	padding: 0;
 }
 
 #mainmenu ul li a
 {
-	color:#ffffff;
+	color: #6FACCF;
 	background-color:transparent;
 	font-size:12px;
-	font-weight:bold;
+	font-weight: normal;
 	text-decoration:none;
-	padding:5px 8px;
+	display: inline-block;
+	padding: 8px 14px;
 }
-
+#mainmenu ul li:last-child a{
+	border-right:0;
+}
 #mainmenu ul li a:hover, #mainmenu ul li.active a
 {
-	color: #6399cd;
-	background-color:#EFF4FA;
+	color: #fff;
+	background-color: #6FACCF;
 	text-decoration:none;
+	display: inline-block;
+	/* padding: 8px 14px; */
 }
 
 div.flash-error, div.flash-notice, div.flash-success
@@ -138,12 +185,15 @@ div.view
 div.breadcrumbs
 {
 	font-size: 0.9em;
-	padding: 5px 20px;
+	padding: 14px 20px;
+	background: #333;
+	color: #fff;
 }
-
+div.breadcrumbs a,
 div.breadcrumbs span
 {
-	font-weight: bold;
+	color:#fff;
+	font-weight: normal;
 }
 
 div.search-form

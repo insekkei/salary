@@ -1,5 +1,5 @@
 <div class="form">
-	<h1>ECCO（厦门）薪资打印系统</h1>
+	<h1>请您登录</h1>
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'login-form',
 	'enableClientValidation'=>true,
@@ -51,6 +51,7 @@ Yii::app()->clientScript->registerScript('password', "
 	var keyboard = $('#keyboard');
 
 	// cardInput.attr('readonly', 'readonly');
+	$('form').attr('autocomplete', 'off');
 
 	// load id
 	var int=window.setInterval(loadIdData, 300);
@@ -58,7 +59,7 @@ Yii::app()->clientScript->registerScript('password', "
 		$.ajax({
 			type: 'get',
 			async: false,
-			url: 'http://192.168.199.210:8080/id',
+			url: 'http://localhost:8080/id',
 			dataType: 'jsonp',
 			jsonp: 'callback',
 			jsonpCallback:'callbackid',
@@ -103,14 +104,17 @@ Yii::app()->clientScript->registerScript('password', "
 			case 'number':
 				var value = $(this).html();
 				inputPos.val(inputPos.val() + value);
+				inputPos.focus();
 				break;
 			case 'delete':
 				var str = inputPos.val();
 				var newStr = str.substring(0, str.length-1);
 				inputPos.val(newStr);
+				inputPos.focus();
 				break;
 			case 'removeAll':
 				inputPos.val('');
+				inputPos.focus();
 				break;
 			case 'confirm':
 				keyboard.slideUp();
