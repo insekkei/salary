@@ -1,11 +1,5 @@
 	var LODOP; //声明为全局变量  
-	/*function Preview1() {	
-		LODOP=getLodop();  
-		LODOP.PRINT_INITA(0,0,"80mm","12cm","打印控件功能演示");	
-		LODOP.SET_PRINT_PAGESIZE(3, 800, "10mm", "");
-		AddPrintContent("10101010101010","郭德强");
-	  	LODOP.PREVIEW();
-	};*/
+
 	var url;
 	var printResult;
 	var t;
@@ -16,12 +10,13 @@
 		LODOP.PRINT_INITA(0,0,"80mm","12cm", param);
 		LODOP.SET_PRINT_PAGESIZE(3, 800, "10mm", "");
 		AddPrintContent();
-		LODOP.SET_PRINT_MODE("CATCH_PRINT_STATUS",true);
-	  	printResult = LODOP.PRINT();
+//		LODOP.SET_PRINT_MODE("CATCH_PRINT_STATUS",true);
+		LODOP.PRINT();
+	  	//printResult = LODOP.PRINT();
 	  	// var success = LODOP.GET_VALUE('PRINT_STATUS_OK', printResult);
-	  	if (printResult == true) {
-	  		updateData();
-	  	}
+	//  	if (printResult == true) {
+	  	updateData();
+	//  	}
 	  	// LODOP.PREVIEW();
 	};
 	
@@ -67,19 +62,19 @@
 		var length = 200;
 		var height = 25;
 		var start = 60;
-		var step = 15;
+		var step = 12;
 		var line = 0;
 
 		LODOP.SET_PRINT_STYLE("FontColor","000");
-		LODOP.SET_PRINT_STYLE("FontSize",12.5);
+		LODOP.SET_PRINT_STYLE("FontSize",12);
 		LODOP.ADD_PRINT_LINE(50,"5mm",50,"75mm",2,1);
-		LODOP.ADD_PRINT_LINE(570,"5mm",570,"75mm",2,1);
+		LODOP.ADD_PRINT_LINE(470,"5mm",470,"75mm",2,1);
 //		LODOP.ADD_PRINT_RECT("2.3cm","0.5cm","7cm","11cm",0,1);
 		LODOP.ADD_PRINT_TEXT(10,30,250,height,"ECCO（厦门）有限公司 - 薪资单");
-		LODOP.SET_PRINT_STYLE("FontSize",11);
-		LODOP.ADD_PRINT_TEXT(33,120,250,height,"薪资月份：" + pr_map['month-print']);
-		LODOP.SET_PRINT_STYLE("FontName","微软雅黑");
 		LODOP.SET_PRINT_STYLE("FontSize",9);
+		LODOP.ADD_PRINT_TEXT(33,120,250,height,"薪资月份：" + pr_map['month-print']);
+		LODOP.SET_PRINT_STYLE("FontName","仿宋");
+		LODOP.SET_PRINT_STYLE("FontSize",7);
 		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"工号：" + pr_map.pr_employer_id);
 		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"部门：" + pr_map.pr_department);
 		line++;
@@ -117,12 +112,12 @@
 		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"住房补贴：" + pr_map.pr_award_zhufang);
 		line++;
 		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"忠诚奖：" + pr_map.pr_award_nianzi);
-		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"过节费：" + pr_map.pr_award_guojie);
+		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"节日奖金：" + pr_map.pr_award_guojie);
 		line++;
 		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"高温补贴：" + pr_map.pr_award_gaowen);
 		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"其他补贴：" + pr_map.pr_award_qita);
 		line++;
-		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"年度考核奖：" + pr_map.pr_award_nianzhong);
+		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"年终奖金：" + pr_map.pr_award_nianzhong);
 		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"税前调整项-补：" + pr_map.pr_tiaozhengqian);
 		line++;
 		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"税后补贴：" + pr_map.pr_tiaozhenghou);
@@ -179,22 +174,4 @@
 		LODOP.ADD_PRINT_TEXT(start+line*step+10,30,length,height,"日期：" + year + '/' + month + '/' + day);
 		LODOP.ADD_PRINT_TEXT(start+line*step+10,150,length,height,"时间：" + hour + ':' + minute + ':' + second);
 		line++;
-
-//		LODOP.SET_PRINT_STYLEA(2,"FontColor",0);
-//		LODOP.ADD_PRINT_TEXT(41,180,100,20,"2016年1月13日");
-//		LODOP.SET_PRINT_STYLEA(4,"FontColor",0);
-//		LODOP.ADD_PRINT_TEXT(75,37,431,20,"机构:109110 交易代码:010110");
-//		LODOP.ADD_PRINT_TEXT(129,37,431,20,"网点名称：东城分行营业部");
-//		LODOP.ADD_PRINT_TEXT(156,37,431,20,"主卡卡号："+strCode);
-//		LODOP.ADD_PRINT_TEXT(183,37,431,20,"客户姓名："+strName);
-//		LODOP.ADD_PRINT_TEXT(212,37,431,20,"登陆方式：用户名登陆");
-//		LODOP.ADD_PRINT_TEXT(17,140,60,20,"东城分行");
-//		LODOP.ADD_PRINT_TEXT(249,60,221,20,"以上内容已核实确认无误，客户签名：");
-//		LODOP.SET_PRINT_STYLEA(13,"FontColor",0);
-//		LODOP.ADD_PRINT_TEXT(300,21,74,20,"授权员");
-//		LODOP.SET_PRINT_STYLEA(14,"FontColor",0);
-//		LODOP.ADD_PRINT_TEXT(300,length,74,20,"复核员");
-//		LODOP.SET_PRINT_STYLEA(15,"FontColor",0);
-//		LODOP.ADD_PRINT_TEXT(284,346,74,20,"经办员");
-//		LODOP.SET_PRINT_STYLEA(16,"FontColor",0);
 	};

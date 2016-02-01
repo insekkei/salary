@@ -14,9 +14,6 @@ $employer = $model->employer;
 		<dt>部门：</dt>
 		<dd id="pr_department"><?php echo CHtml::encode($employer->department); ?></dd>
 
-		<!--<dt>职位：</dt>
-		<dd id="pr_position"><?php echo CHtml::encode($employer->position); ?></dd>-->
-
 		<dt><?php echo CHtml::encode($model->getAttributeLabel('employer_id'));?>：</dt> 
 		<dd id="pr_employer_id"><?php echo CHtml::encode($model->employer_id);?></dd>
 
@@ -47,20 +44,11 @@ $employer = $model->employer;
 		<dt><?php echo CHtml::encode($model->getAttributeLabel('salary_x1'));?></dt> 
 	    <dd id="pr_salary_x1"><?php echo CHtml::encode($model->salary_x1);?></dd> 
 
-	    <dt><?php echo CHtml::encode($model->getAttributeLabel('salary_x1_hour'));?></dt> 
-	    <dd id="pr_salary_x1_hour"><?php echo CHtml::encode($model->salary_x1_hour);?></dd> 
-
 	    <dt><?php echo CHtml::encode($model->getAttributeLabel('salary_x2'));?></dt> 
 	    <dd id="pr_salary_x2"><?php echo CHtml::encode($model->salary_x2);?></dd> 
 
-	    <dt><?php echo CHtml::encode($model->getAttributeLabel('salary_x2_hour'));?></dt> 
-	    <dd id="pr_salary_x2_hour"><?php echo CHtml::encode($model->salary_x2_hour);?></dd> 
-
 	    <dt><?php echo CHtml::encode($model->getAttributeLabel('salary_x3'));?></dt> 
 	    <dd id="pr_salary_x3"><?php echo CHtml::encode($model->salary_x3);?></dd> 
-
-	    <dt><?php echo CHtml::encode($model->getAttributeLabel('salary_x3_hour'));?></dt> 
-	    <dd id="pr_salary_x3_hour"><?php echo CHtml::encode($model->salary_x3_hour);?></dd> 
 
 		<dt><?php echo CHtml::encode($model->getAttributeLabel('award_quanqin'));?></dt> 
 	    <dd id="pr_award_quanqin"><?php echo CHtml::encode($model->award_quanqin);?></dd> 
@@ -166,7 +154,14 @@ $employer = $model->employer;
 	    <dt><?php echo CHtml::encode($model->getAttributeLabel('hours_jiaban_queqin'));?></dt> 
 	    <dd id="pr_hours_jiaban_queqin"><?php echo CHtml::encode($model->hours_jiaban_queqin);?></dd> 
 
-
+	    <dt><?php echo CHtml::encode($model->getAttributeLabel('salary_x1_hour'));?></dt> 
+	    <dd id="pr_salary_x1_hour"><?php echo CHtml::encode($model->salary_x1_hour);?></dd> 
+	    
+	    <dt><?php echo CHtml::encode($model->getAttributeLabel('salary_x2_hour'));?></dt> 
+	    <dd id="pr_salary_x2_hour"><?php echo CHtml::encode($model->salary_x2_hour);?></dd> 
+	    
+	    <dt><?php echo CHtml::encode($model->getAttributeLabel('salary_x3_hour'));?></dt> 
+	    <dd id="pr_salary_x3_hour"><?php echo CHtml::encode($model->salary_x3_hour);?></dd> 
 	</dl>
 	<dl class="clearfix">
 	    <dt><?php echo CHtml::encode($model->getAttributeLabel('company_tatal_cost'));?></dt> 

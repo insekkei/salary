@@ -6,7 +6,6 @@
       'enableAjaxValidation'=>false,
   )); ?>
  
- 
  <?php //echo $form->errorSummary($model); ?>
  
     <div class="row">
@@ -27,8 +26,9 @@
         <?php echo $form->passwordField($model,'repeat_password',array('size'=>60,'maxlength'=>128,'class'=>'pwd_pro_input')); ?>
     </div>
 
-    <div class="row buttons">
+    <div class="row buttons small">
         <?php echo CHtml::submitButton('修改密码',array('class'=>'btn_reset')); ?>
+        <a href="javascript:history.back();" class="back-link">取消</a>
     </div>
 
     <div id="keyboard">

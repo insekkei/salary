@@ -45,7 +45,7 @@ $('.search-form form').submit(function(){
 		 array(
             'name'=>'print_status',
             'type'=>'raw',
-            'value'=>'$data->print_status == 1 ? "是" : "否"',
+            'value'=>'$data->print_status == 1 ? "已打印" : "可打印"',
             'filter'=>false,
         ),
 		array(
@@ -55,7 +55,7 @@ $('.search-form form').submit(function(){
 				'print' => array(
 					'label'=> '激活打印',
 					'click'=>"function(){
-								if(!confirm('确定要激活该员工的薪资打印吗?')) 
+								if(!confirm('确定要将该员工的薪资变为可打印吗?')) 
 									return false;
 								return true;
                              }

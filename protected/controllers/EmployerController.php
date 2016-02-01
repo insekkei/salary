@@ -28,11 +28,11 @@ class EmployerController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('logout', 'home','login', 'getSerialID', 'updatePrintStatus', 'changepassword'),
+				'actions'=>array('logout', 'home','login', 'getSerialID', 'updatePrintStatus', 'changepassword', 'changeok'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('logout','index', 'salary', 'getSerialID', 'updatePrintStatus', 'changepassword'),
+				'actions'=>array('logout','index', 'salary', 'getSerialID', 'updatePrintStatus', 'changepassword', 'changeok'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -45,6 +45,11 @@ class EmployerController extends Controller
 		$this->render('home',array());
 	}
 	
+
+	public function actionChangeok($msg) {
+		$this->render('changeok', array('msg'=>$msg));
+	}
+
 
 	public function actionIndex($employer_id)
 	{
@@ -141,9 +146,9 @@ class EmployerController extends Controller
 	        if($valid){
 	          $model->password = $model->new_password;
 	          if($model->save())
-	           		$this->redirect(array('index','msg'=>'1','employer_id'=>$employer_id)); 
+	           		$this->redirect(array('changeok','msg'=>'1')); 
 	          else
-	           		$this->redirect(array('index','msg'=>'0','employer_id'=>$employer_id));
+	           		$this->redirect(array('changeok','msg'=>'0'));
 	          }
 	       }
 	 

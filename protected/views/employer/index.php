@@ -20,11 +20,6 @@
 <?php
 Yii::app()->clientScript->registerScript('changepwd', "
 
-	var msg = window.location.search.split('&')[1];
-	if (msg === 'msg=1') {
-		$('#successMessage').html('密码修改成功！').fadeOut(3000);
-	}
-
 	$('#changepwd-link').bind('click', function(e){
 		var url = $(this).attr('href');
 		var employerId = window.location.search.split('&')[1].split('=')[1];
@@ -32,8 +27,7 @@ Yii::app()->clientScript->registerScript('changepwd', "
 		window.location.href = url;
 		e.preventDefault();
 	});
-	
-	
+
 ");
 
 
