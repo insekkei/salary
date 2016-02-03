@@ -52,10 +52,10 @@ Yii::app()->clientScript->registerScript('querySalary', "
 			var employerId = url.split('&')[1].split('=')[1];
 			var salaryDate = url.split('&')[2].split('=')[1];
 			var param = String(employerId) + '_' + String(salaryDate);
-			// $.get(url, function(result){
-				PrintSalary(url, param);
-				// window.location.reload();
-			// });
+			 $.get(url, function(result){
+				 PrintSalary(url, param);
+				 window.location.reload();
+			 });
 			e.preventDefault();
 		});
 	}

@@ -1,49 +1,13 @@
 	var LODOP; //声明为全局变量  
 
-	var url;
-	var printResult;
-	var t;
 	function PrintSalary(printUrl, param) {	
-		LODOP=getLodop();  
-		url = printUrl;
-		
+		LODOP=getLodop(document.getElementById('LODOP_OB'),document.getElementById('LODOP_EM'));  
 		LODOP.PRINT_INITA(0,0,"80mm","12cm", param);
 		LODOP.SET_PRINT_PAGESIZE(3, 800, "10mm", "");
 		AddPrintContent();
-//		LODOP.SET_PRINT_MODE("CATCH_PRINT_STATUS",true);
 		LODOP.PRINT();
-	  	//printResult = LODOP.PRINT();
-	  	// var success = LODOP.GET_VALUE('PRINT_STATUS_OK', printResult);
-	//  	if (printResult == true) {
-	  	updateData();
-	//  	}
-	  	// LODOP.PREVIEW();
 	};
-	
-	/*function waitFor () {
-		t = setTimeout("waitFor()",1000);    
-		if (LODOP.GET_VALUE("PRINT_STATUS_OK",printResult)) {
-			clearTimeout(t);
-			updateData();
-			// alert("打印成功！");
-		}if ((!LODOP.GET_VALUE("PRINT_STATUS_EXIST",printResult))) {
-			clearTimeout(t);
-			updateData();
-			// alert("打印任务被删除！");
-		} 
-	}*/
-	
-	function updateData() {
-		// 修改数据库中打印状态
-  		$.get(url, function(result){
-			window.location.reload();
-		});
 
-		// 修改后台打印机任务队列
-		var printerLoc = LODOP.GET_SYSTEM_INFO('NetworkAdapter.1.PhysicalAddress');
-  		$.get('/salary/index.php?r=printer/updateprinter&id=' + printerLoc);
-
-	}
 
 	function AddPrintContent() {
 		var pr_map = {};
@@ -69,12 +33,11 @@
 		LODOP.SET_PRINT_STYLE("FontSize",12);
 		LODOP.ADD_PRINT_LINE(50,"5mm",50,"75mm",2,1);
 		LODOP.ADD_PRINT_LINE(470,"5mm",470,"75mm",2,1);
-//		LODOP.ADD_PRINT_RECT("2.3cm","0.5cm","7cm","11cm",0,1);
 		LODOP.ADD_PRINT_TEXT(10,30,250,height,"ECCO（厦门）有限公司 - 薪资单");
 		LODOP.SET_PRINT_STYLE("FontSize",9);
 		LODOP.ADD_PRINT_TEXT(33,120,250,height,"薪资月份：" + pr_map['month-print']);
-		LODOP.SET_PRINT_STYLE("FontName","仿宋");
-		LODOP.SET_PRINT_STYLE("FontSize",7);
+		LODOP.SET_PRINT_STYLE("FontName","宋体");
+		LODOP.SET_PRINT_STYLE("FontSize",8);
 		LODOP.ADD_PRINT_TEXT(start+line*step,30,length,height,"工号：" + pr_map.pr_employer_id);
 		LODOP.ADD_PRINT_TEXT(start+line*step,150,length,height,"部门：" + pr_map.pr_department);
 		line++;
