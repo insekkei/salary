@@ -28,14 +28,14 @@ $employer = $model->employer;
 
 <div class="salarydetails">
 	<dl class="clearfix"> 
+		<dt><?php echo CHtml::encode($model->getAttributeLabel('employer_id'));?>：</dt> 
+		<dd id="pr_employer_id"><?php echo CHtml::encode($model->employer_id);?></dd>
+		
 		<dt>姓名：</dt>
 		<dd id="pr_username"><?php echo CHtml::encode($employer->username); ?></dd>
 
 		<dt>部门：</dt>
 		<dd id="pr_department"><?php echo CHtml::encode($employer->department); ?></dd>
-
-		<dt><?php echo CHtml::encode($model->getAttributeLabel('employer_id'));?>：</dt> 
-		<dd id="pr_employer_id"><?php echo CHtml::encode($model->employer_id);?></dd>
 
 		<dt>月份：</dt>
 	    <dd id="month-print">上月</dd> 
