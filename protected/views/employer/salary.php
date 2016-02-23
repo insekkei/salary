@@ -3,8 +3,28 @@
 $url = Yii::app()->createUrl("salary/printed", array("employer_id"=>$model->employer_id,"salary_date"=>$model->salary_date));
 $employer = $model->employer;
 ?>
+
 <a href="<?php echo $url;?>" class="btn print-button<?php echo CHtml::encode($model->print_status);?>">打印</a>
 <span class="btn print-button1">已打印</span>
+
+<!--打印隐藏区域-->
+<style type="text/css">
+ .only_for_print {
+ 	display:none;
+ 	padding: 10px;
+ }
+ </style> 
+
+<div id="page1" class="only_for_print">
+	<p>ECCO(厦门)有限公司 - 薪资单</br>
+	薪资月份：<span class="month-print">本月</span></p>
+	<div style="border-top:1px solid #000"></div>
+	<p>工号:<?php echo CHtml::encode($model->employer_id);?> 姓名:<?php echo CHtml::encode($employer->department); ?></p>
+</div>
+<OBJECT  ID="jatoolsPrinter" CLASSID="CLSID:B43D3361-D075-4BE2-87FE-057188254255" 
+	              codebase="jatoolsPrinter.cab#version=8,6,0,0" height=0 width=0></OBJECT> 
+<!--打印隐藏区域over-->
+
 
 <div class="salarydetails">
 	<dl class="clearfix"> 

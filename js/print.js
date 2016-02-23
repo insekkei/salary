@@ -1,4 +1,4 @@
-	var LODOP; //声明为全局变量  
+/*	var LODOP; //声明为全局变量  
 
 	function PrintSalary(printUrl, param) {	
 		LODOP=getLodop(document.getElementById('LODOP_OB'),document.getElementById('LODOP_EM'));  
@@ -137,4 +137,4 @@
 		LODOP.ADD_PRINT_TEXT(start+line*step+10,30,length,height,"日期：" + year + '/' + month + '/' + day);
 		LODOP.ADD_PRINT_TEXT(start+line*step+10,150,length,height,"时间：" + hour + ':' + minute + ':' + second);
 		line++;
-	};
+	};*/

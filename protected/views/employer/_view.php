@@ -30,7 +30,7 @@ Yii::app()->clientScript->registerScript('querySalary', "
 	$('#month-details').load(firstUrl, function() {
 		var date = $('.salary-list .view:first-child time').html();
 		print();
-		$('#month-print').html(date);
+		$('#month-print, .month-print').html(date);
 	});
 	
 	// 加载选中月份工资单
@@ -40,7 +40,7 @@ Yii::app()->clientScript->registerScript('querySalary', "
 		var date = thisObj.find('time').html();
 		thisObj.addClass('current').siblings().removeClass('current');
 		$('#month-details').load(url, function(){
-			$('#month-print').html(date);
+			$('#month-print, .month-print').html(date);
 			print();
 		});
 	});
@@ -53,8 +53,26 @@ Yii::app()->clientScript->registerScript('querySalary', "
 			var salaryDate = url.split('&')[2].split('=')[1];
 			var param = String(employerId) + '_' + String(salaryDate);
 			 $.get(url, function(result){
-				 PrintSalary(url, param);
-				 window.location.reload();
+				// PrintSalary(url, param);
+				// window.location.reload();
+				var myDoc = {
+					marginIgnored:true,
+					settings:{ 
+		            // 指定纸张的高宽以十分之一毫米为单位
+		            paperWidth : 800, 
+		            paperHeight : 'auto', 
+				    orientation : 1 }, 
+					documents: document,
+					done: function (err) {
+						if (!err) {
+							window.location.reload();
+						}
+					},
+					// 打印时,only_for_print取值为显示 
+			 		classesReplacedWhenPrint: new Array('.only_for_print{display:block}'), 
+					copyrights: '杰创软件拥有版权  www.jatools.com' // 版权声明,必须   
+				};
+				document.getElementById('jatoolsPrinter').print(myDoc, false); // 直接打印，不弹出打印机设置对话框 
 			 });
 			e.preventDefault();
 		});
