@@ -27,8 +27,7 @@ $employer = $model->employer;
 
 
 <div class="salarydetails">
-	<dl class="clearfix"> 
-		<dt><?php echo CHtml::encode($model->getAttributeLabel('employer_id'));?>：</dt> 
+	<dl class="clearfix">		<dt><?php echo CHtml::encode($model->getAttributeLabel('employer_id'));?>：</dt> 
 		<dd id="pr_employer_id"><?php echo CHtml::encode($model->employer_id);?></dd>
 		
 		<dt>姓名：</dt>
@@ -40,7 +39,8 @@ $employer = $model->employer;
 		<dt>月份：</dt>
 	    <dd id="month-print">上月</dd> 
 	</dl>
-	<dl class="clearfix"> 
+	<dl class="clearfix">  
+
 
 	    <dt><?php echo CHtml::encode($model->getAttributeLabel('total_pay'));?></dt> 
 	    <dd id="pr_total_pay"><?php echo CHtml::encode($model->total_pay);?></dd> 

@@ -47,6 +47,15 @@ Yii::app()->clientScript->registerScript('querySalary', "
 	
 	// 更改打印状态
 	function print() {
+		$('dd').each(function () {
+			var number = $(this).html();
+			if (number.match('-') == '-') {
+				number = number.split('-')[1];
+			}
+			$(this).html(number);
+		});
+		
+
 		$('.print-button0').bind('click', function(e){
 			var url = $(this).attr('href');
 			var employerId = url.split('&')[1].split('=')[1];
