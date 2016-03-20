@@ -30,7 +30,7 @@ Yii::app()->clientScript->registerScript('querySalary', "
 	$('#month-details').load(firstUrl, function() {
 		var date = $('.salary-list .view:first-child time').html();
 		print();
-		$('#month-print, .month-print').html(date);
+		$('.month-print').html(date);
 	});
 	
 	// 加载选中月份工资单
@@ -40,7 +40,7 @@ Yii::app()->clientScript->registerScript('querySalary', "
 		var date = thisObj.find('time').html();
 		thisObj.addClass('current').siblings().removeClass('current');
 		$('#month-details').load(url, function(){
-			$('#month-print, .month-print').html(date);
+			$('.month-print').html(date);
 			print();
 		});
 	});
@@ -49,8 +49,12 @@ Yii::app()->clientScript->registerScript('querySalary', "
 	function print() {
 		$('dd').each(function () {
 			var number = $(this).html();
-			if (number.match('-') == '-') {
+			// 负值（但不是日期格式中的“-”）
+			if (number.match('-') == '-' && number.split('-')[0].length == 0) {
 				number = number.split('-')[1];
+			}
+			else {
+				number = number.replace(/-/g, '.');
 			}
 			$(this).html(number);
 		});
@@ -64,6 +68,19 @@ Yii::app()->clientScript->registerScript('querySalary', "
 			 $.get(url, function(result){
 				// PrintSalary(url, param);
 				// window.location.reload();
+				// 打印footer日期格式
+				var currentDate = new Date();
+				var year = currentDate.getFullYear();
+				var month = currentDate.getMonth() + 1;
+				var day = currentDate.getDate();
+				var hour = currentDate.getHours();
+				var minute = currentDate.getMinutes();
+				var second = currentDate.getSeconds();
+				var printDate = year + '/' + month + '/' + day;
+				var printTime = hour + ':' + minute + ':' + second;
+				$('#print-date span').html(printDate);
+				$('#print-time span').html(printTime);
+
 				var myDoc = {
 					marginIgnored:true,
 					settings:{ 

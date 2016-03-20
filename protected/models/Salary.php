@@ -141,7 +141,7 @@ class Salary extends CActiveRecord
 			'debit_queqin' => '缺勤扣款',
 			'debit_shuihou' => '税后扣款',
 			'debit_shuiqian_tiaozheng' => '税前调整项-扣',
-			'debit_nianjia' => '年假扣款',
+			'debit_nianjia' => '长期激励奖',
 			'hours_nianjia' => '年假小时数',
 			'debit_gongsifangjia' => '公司放假扣款',
 			'hours_gongsifangjia' => '公司放假小时数',
