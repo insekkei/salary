@@ -47,19 +47,7 @@ Yii::app()->clientScript->registerScript('querySalary', "
 	
 	// 更改打印状态
 	function print() {
-		$('dd').each(function () {
-			var number = $(this).html();
-			// 负值（但不是日期格式中的“-”）
-			if (number.match('-') == '-' && number.split('-')[0].length == 0) {
-				number = number.split('-')[1];
-			}
-			else {
-				number = number.replace(/-/g, '.');
-			}
-			$(this).html(number);
-		});
 		
-
 		$('.print-button0').bind('click', function(e){
 			var url = $(this).attr('href');
 			var employerId = url.split('&')[1].split('=')[1];
