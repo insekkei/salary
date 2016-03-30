@@ -57,7 +57,17 @@ Yii::app()->clientScript->registerScript('querySalary', "
 				// PrintSalary(url, param);
 				// window.location.reload();
 				// 打印footer日期格式
-				
+				var currentDate = new Date();
+				var year = currentDate.getFullYear();
+				var month = currentDate.getMonth() + 1;
+				var day = currentDate.getDate();
+				var hour = currentDate.getHours();
+				var minute = currentDate.getMinutes();
+				var second = currentDate.getSeconds();
+				var printDate = year + '/' + month + '/' + day;
+				var printTime = hour + ':' + minute + ':' + second;
+				$('#print-date span').html(printDate);
+				$('#print-time span').html(printTime);
 
 				var myDoc = {
 					marginIgnored:true,
